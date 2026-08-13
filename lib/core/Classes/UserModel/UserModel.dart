@@ -1,0 +1,54 @@
+class UserModel {
+  final String name;
+
+  final String email;
+
+  final String phone;
+
+  final String buildingNumber;
+
+  final String apartmentNumber;
+
+  final bool isTenant;
+
+  final bool isOwner;
+
+  final bool isPay;
+
+  UserModel({
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.buildingNumber,
+    required this.apartmentNumber,
+    this.isTenant = false,
+    this.isOwner = false,
+    this.isPay = false,
+  });
+
+  factory UserModel.fromfirestore(Map<String, dynamic> json) {
+    return UserModel(
+      name: json["name"],
+      email: json["email"],
+      phone: json["phone"],
+      buildingNumber: json["buildingNumber"],
+      apartmentNumber: json["apartmentNumber"],
+      isTenant: json['isTenant'],
+      isOwner: json['isOwner'],
+      isPay: json['isPay'],
+    );
+  }
+
+  Map<String, dynamic> tofirestore() {
+    return {
+      "name": name,
+      "email": email,
+      "phone": phone,
+      "buildingNumber": buildingNumber,
+      "apartmentNumber": apartmentNumber,
+      "isTenant": isTenant,
+      "isOwner": isOwner,
+      "isPay": isPay,
+    };
+  }
+}
