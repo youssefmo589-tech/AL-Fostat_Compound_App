@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../AppTheme/AppColors.dart';
-import '../../AppeRoutes/AppRouteName.dart';
-import '../../gen/assets.gen.dart';
-import '../../provider/SettingProvider.dart';
+import '../../core/AppTheme/AppColors.dart';
+import '../../core/AppeRoutes/AppRouteName.dart';
+import '../../core/gen/assets.gen.dart';
+import '../../core/provider/SettingProvider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

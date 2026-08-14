@@ -1,10 +1,10 @@
-import 'package:alfostat/core/Widgets/CustomeButton.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../../AppTheme/AppColors.dart';
-import '../../../gen/assets.gen.dart';
+import '../../../Widgets/CustomeButton.dart';
+import '../../../core/AppTheme/AppColors.dart';
+import '../../../core/gen/assets.gen.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({Key? key}) : super(key: key);

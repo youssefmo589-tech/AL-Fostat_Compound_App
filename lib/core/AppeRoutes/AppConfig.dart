@@ -1,15 +1,15 @@
-import 'package:alfostat/core/Models/splashScreen/splashScreen.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../Models/AchievementPage/AchievementsPage.dart';
-import '../Models/ComplaintPage/ComplaintPage.dart';
-import '../Models/HomePage/Home.dart';
-import '../Models/Login/ForgetPasswordPage/ForgetPasswordPage.dart';
-import '../Models/Login/LoginPage/LoginPage.dart';
-import '../Models/Login/SignUpPage/SignupPage.dart';
-import '../Models/SubscriptionPage/SubscriptionPage.dart';
-import '../Models/layoutView/layoutView.dart';
+import '../../Models/AchievementPage/AchievementsPage.dart';
+import '../../Models/AchievementPage/AddAchievement.dart';
+import '../../Models/ComplaintPage/ComplaintPage.dart';
+import '../../Models/HomePage/Home.dart';
+import '../../Models/Login/ForgetPasswordPage/ForgetPasswordPage.dart';
+import '../../Models/Login/LoginPage/LoginPage.dart';
+import '../../Models/Login/SignUpPage/SignupPage.dart';
+import '../../Models/SubscriptionPage/SubscriptionPage.dart';
+import '../../Models/layoutView/layoutView.dart';
+import '../../Models/splashScreen/splashScreen.dart';
 import 'AppRouteName.dart';
 
 class AppConfig {
@@ -40,6 +40,9 @@ class AppConfig {
 
       case AppRouteName.ForgetPasswordPage:
         return MaterialPageRoute(builder: (context) => ForgetPasswordPage());
+
+      case AppRouteName.AddAchievement:
+        return MaterialPageRoute(builder: (context) => AddAchievement());
     }
   }
 }

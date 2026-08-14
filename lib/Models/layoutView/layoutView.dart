@@ -1,11 +1,11 @@
-import 'package:alfostat/core/Models/HomePage/Home.dart';
-import 'package:alfostat/core/Models/Population/Population.dart';
-import 'package:alfostat/core/Models/profile/profile.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../AppTheme/AppColors.dart';
+import '../../core/AppTheme/AppColors.dart';
+import '../HomePage/Home.dart';
+import '../Population/Population.dart';
+import '../profile/profile.dart';
 
 class LayoutView extends StatefulWidget {
   const LayoutView({super.key});

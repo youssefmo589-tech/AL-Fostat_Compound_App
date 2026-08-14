@@ -2,7 +2,7 @@ import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../AppTheme/AppColors.dart';
+import '../core/AppTheme/AppColors.dart';
 
 class TabBarItem extends StatelessWidget {
   final bool isselected;

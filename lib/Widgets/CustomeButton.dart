@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../AppTheme/AppColors.dart';
-import '../provider/SettingProvider.dart';
+import '../core/AppTheme/AppColors.dart';
+import '../core/provider/SettingProvider.dart';
 
 class CustomeButton extends StatelessWidget {
   final String title;

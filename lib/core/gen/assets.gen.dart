@@ -64,6 +64,14 @@ class $AssetsImagesGen {
   AssetGenImage get monthlyBlack =>
       const AssetGenImage('assets/images/MonthlyBlack.png');
 
+  /// File path: assets/images/achievementdarkgreen .png
+  AssetGenImage get achievementdarkgreen =>
+      const AssetGenImage('assets/images/achievementdarkgreen .png');
+
+  /// File path: assets/images/achievementphoto.png
+  AssetGenImage get achievementphoto =>
+      const AssetGenImage('assets/images/achievementphoto.png');
+
   /// File path: assets/images/changepass.png
   AssetGenImage get changepass =>
       const AssetGenImage('assets/images/changepass.png');
@@ -109,6 +117,8 @@ class $AssetsImagesGen {
     achievementBlack,
     monthluLight,
     monthlyBlack,
+    achievementdarkgreen,
+    achievementphoto,
     changepass,
     complaintBlack,
     complaintwhite,

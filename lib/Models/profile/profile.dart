@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
 
-import '../../AppTheme/AppColors.dart';
+import '../../core/AppTheme/AppColors.dart';
 import 'SettingOptions.dart';
 
 class Profile extends StatefulWidget {

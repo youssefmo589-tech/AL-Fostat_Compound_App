@@ -2,8 +2,8 @@ import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../AppTheme/AppColors.dart';
 import '../../Widgets/TabBarItem.dart';
+import '../../core/AppTheme/AppColors.dart';
 
 class Population extends StatefulWidget {
   const Population({super.key});

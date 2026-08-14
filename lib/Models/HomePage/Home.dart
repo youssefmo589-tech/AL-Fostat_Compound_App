@@ -1,13 +1,13 @@
-import 'package:alfostat/core/Models/HomePage/CategoryModel.dart';
-import 'package:alfostat/core/Models/HomePage/secionContainer.dart';
+import 'package:alfostat/Models/HomePage/secionContainer.dart';
 import 'package:alfostat/core/Strings/Strings.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../AppTheme/AppColors.dart';
-import '../../AppeRoutes/AppRouteName.dart';
-import '../../gen/assets.gen.dart';
+import '../../core/AppTheme/AppColors.dart';
+import '../../core/AppeRoutes/AppRouteName.dart';
+import '../../core/gen/assets.gen.dart';
+import 'CategoryModel.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
