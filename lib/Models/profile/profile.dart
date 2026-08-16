@@ -13,7 +13,6 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  bool status = false;
 
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
@@ -58,7 +57,7 @@ class _ProfileState extends State<Profile> {
                   optionicon: FlutterSwitch(
                     width: 60.0,
                     toggleSize: 28.0,
-                    value: status,
+                    value: provider.isDark(),
                     borderRadius: 30.0,
                     padding: 2.0,
                     activeColor: AppColors.darkgreen,
@@ -66,13 +65,11 @@ class _ProfileState extends State<Profile> {
                     activeToggleColor: AppColors.white,
                     inactiveToggleColor: AppColors.white,
                     onToggle: (bool value) {
-                      provider.isDark()
-                          ? provider.changeTheme(ThemeMode.light)
-                          : provider.changeTheme(ThemeMode.dark);
-
-                      setState(() {
-                        status = value;
-                      });
+                      if (value) {
+                        provider.changeTheme(ThemeMode.dark);
+                      } else {
+                        provider.changeTheme(ThemeMode.light);
+                      }
                     },
                   ),
                 ),

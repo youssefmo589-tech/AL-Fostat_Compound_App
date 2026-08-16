@@ -5,11 +5,11 @@ import '../../core/AppTheme/AppColors.dart';
 import '../../core/provider/SettingProvider.dart';
 
 class SectionContainer extends StatefulWidget {
-  final String image;
+  final String ? image;
 
   final String? title;
 
-  const SectionContainer({super.key, required this.image, this.title});
+  const SectionContainer({super.key, this.image, this.title});
 
   State<SectionContainer> createState() => _SectionContainerState();
 }
@@ -26,10 +26,10 @@ class _SectionContainerState extends State<SectionContainer> {
         color: provider.isDark() ? AppColors.black : AppColors.white,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppColors.green, width: 2),
-        image: DecorationImage(
-          image: AssetImage(widget.image),
+          image: widget.image != null ? DecorationImage(
+            image: AssetImage(widget.image!),
           fit: BoxFit.cover,
-        ),
+          ) : null
       ),
       child: Column(
         children: [
@@ -42,14 +42,12 @@ class _SectionContainerState extends State<SectionContainer> {
                     width: double.infinity,
               decoration: BoxDecoration(
                 color: provider.isDark()
-                    ? AppColors.black.withValues(alpha: 0.5)
-                    : AppColors.lighgrey.withValues(alpha: 0.5),
+                    ? AppColors.black.withValues(alpha: 0.8)
+                    : AppColors.lighgrey.withValues(alpha: 0.8),
                 border: Border.all(color: AppColors.green, width: 2),
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+              child:
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
@@ -61,8 +59,7 @@ class _SectionContainerState extends State<SectionContainer> {
                       ),
                     ),
                   ),
-                ],
-              ),
+
             ),
           ),
         ],

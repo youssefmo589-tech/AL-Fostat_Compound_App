@@ -18,4 +18,6 @@ class AppRouteName {
   static const String ForgetPasswordPage = '/ForgetPasswordPage';
 
   static const String AddAchievement = '/AddAchievement';
+
+  static const String AchievementDetails = '/AchievementDetails';
 }

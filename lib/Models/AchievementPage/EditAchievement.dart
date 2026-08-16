@@ -13,17 +13,27 @@ import '../../core/Strings/Strings.dart';
 import '../../core/provider/SettingProvider.dart';
 import '../HomePage/secionContainer.dart';
 
-class AddAchievement extends StatefulWidget {
-  const AddAchievement({super.key});
+class EditAchievement extends StatefulWidget {
+  final AchievementDataModel achievement;
 
-  State<AddAchievement> createState() => _AddAchievementState();
+  const EditAchievement({super.key, required this.achievement});
+
+  State<EditAchievement> createState() => _EditAchievementState();
 }
 
-class _AddAchievementState extends State<AddAchievement> {
+class _EditAchievementState extends State<EditAchievement> {
+  DateTime? _selectedDate;
 
-  DateTime ? _selectedDate;
   TextEditingController title = TextEditingController();
   TextEditingController descrption = TextEditingController();
+
+  void initState() {
+    super.initState();
+
+    _selectedDate = widget.achievement.date;
+    title.text = widget.achievement.title;
+    descrption.text = widget.achievement.description;
+  }
 
   Widget build(BuildContext context) {
     final provider = Provider.of<SettingProvider>(context);
@@ -41,7 +51,7 @@ class _AddAchievementState extends State<AddAchievement> {
           ),
         ),
         title: Text(
-          "Add Achievement",
+          "Edit Achievement",
           style: theme.titleMedium?.copyWith(
             fontSize: 18,
             color: provider.isDark() ? AppColors.green : Colors.black,
@@ -103,64 +113,73 @@ class _AddAchievementState extends State<AddAchievement> {
                   Row(
                     spacing: 8,
                     children: [
-                      Icon(Icons.calendar_month_outlined, size: 24,
-                        color: provider.isDark() ? AppColors.green : AppColors
-                            .darkgreen,),
-                      Text("Achievement Date",
-                        style: theme.titleMedium?.copyWith(fontSize: 16,
-                            color: provider.isDark()
-                                ? AppColors.lighgrey
-                                : Colors.black),),
+                      Icon(
+                        Icons.calendar_month_outlined,
+                        size: 24,
+                        color: provider.isDark()
+                            ? AppColors.green
+                            : AppColors.darkgreen,
+                      ),
+                      Text(
+                        "Achievement Date",
+                        style: theme.titleMedium?.copyWith(
+                          fontSize: 16,
+                          color: provider.isDark()
+                              ? AppColors.lighgrey
+                              : Colors.black,
+                        ),
+                      ),
                     ],
                   ),
                   GestureDetector(
-                      onTap: () {
-                        _selectdate(context);
-                      },
-                      child: Text(
-                        _selectedDate != null ? DateFormat("yyyy-MM-dd").format(
-                            _selectedDate!) : "Choose date",
-                        style: theme.titleSmall?.copyWith(
-                            color: provider.isDark()
-                                ? AppColors.green
-                                : AppColors.darkgreen,
-                            decoration: TextDecoration.underline,
-                            decorationColor: provider.isDark()
-                                ? AppColors.green
-                                : AppColors.darkgreen),)),
+                    onTap: () {
+                      _selectdate(context);
+                    },
+                    child: Text(
+                      _selectedDate != null
+                          ? DateFormat("yyyy-MM-dd").format(_selectedDate!)
+                          : "Choose date",
+                      style: theme.titleSmall?.copyWith(
+                        color: provider.isDark()
+                            ? AppColors.green
+                            : AppColors.darkgreen,
+                        decoration: TextDecoration.underline,
+                        decorationColor: provider.isDark()
+                            ? AppColors.green
+                            : AppColors.darkgreen,
+                      ),
+                    ),
+                  ),
                 ],
               ),
               GestureDetector(
-                  onTap: () async {
-                    if (_selectedDate != null && title.text
-                        .trim()
-                        .isNotEmpty && descrption.text
-                        .trim()
-                        .isNotEmpty) {
-                      EasyLoading.show();
-                      final achievement = AchievementDataModel(
-                          title: title.text.trim(),
-                          description: descrption.text.trim(),
-                          date: _selectedDate);
-                      bool isadded = await FireStoreCloudService
-                          .createAchievement(achievement);
-                      if (isadded) {
-                        EasyLoading.dismiss();
-                        AppSnackBar.success("Achievement Added Successfully");
-                        Navigator.pop(context);
-                      }
-                      else {
-                        EasyLoading.dismiss();
-                        AppSnackBar.error("Something went wrong");
-                      }
-                    }
-                    else {
-                      EasyLoading.dismiss();
-                      AppSnackBar.error("Complete all fields");
-                    }
-                  },
-                  child: CustomeButton(title: "Add Achievement")),
+                onTap: () async {
+                  if (_selectedDate != null &&
+                      title.text.trim().isNotEmpty &&
+                      descrption.text.trim().isNotEmpty) {
+                    widget.achievement.title = title.text.trim();
+                    widget.achievement.description.trim();
+                    widget.achievement.date = _selectedDate;
+                    EasyLoading.show();
 
+                    bool isedited = await FireStoreCloudService.update(
+                      widget.achievement,
+                    );
+                    if (isedited) {
+                      EasyLoading.dismiss();
+                      AppSnackBar.success("Achievement Edited Successfully");
+                      Navigator.pop(context);
+                    } else {
+                      EasyLoading.dismiss();
+                      AppSnackBar.error("Something went wrong");
+                    }
+                  } else {
+                    EasyLoading.dismiss();
+                    AppSnackBar.error("Complete all fields");
+                  }
+                },
+                child: CustomeButton(title: "Edit Achievement"),
+              ),
             ],
           ),
         ),
@@ -168,17 +187,13 @@ class _AddAchievementState extends State<AddAchievement> {
     );
   }
 
-  Future<void> _selectdate(BuildContext context) async
-  {
+  Future<void> _selectdate(BuildContext context) async {
     _selectedDate = await showDatePicker(
       context: context,
       firstDate: DateTime(2026),
       lastDate: DateTime.now().add(Duration(days: 365)),
     );
 
-    setState(() {
-
-    });
+    setState(() {});
   }
-  
 }

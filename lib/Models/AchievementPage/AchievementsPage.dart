@@ -1,10 +1,15 @@
+import 'package:alfostat/Models/AchievementPage/AchievementDetails.dart';
+import 'package:alfostat/Models/HomePage/secionContainer.dart';
 import 'package:alfostat/core/AppeRoutes/AppRouteName.dart';
+import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FirestoreCloudService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/AppTheme/AppColors.dart';
+import '../../core/Strings/Strings.dart';
 import '../../core/gen/assets.gen.dart';
 import '../../core/provider/SettingProvider.dart';
+import 'AchieveMentDataModel.dart';
 
 class AchievementsPage extends StatefulWidget {
   const AchievementsPage({super.key});
@@ -38,7 +43,54 @@ class _AchievementsPageState extends State<AchievementsPage> {
         centerTitle: true,
       ),
 
-      body: Column(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+        child: StreamBuilder(
+
+            stream: FireStoreCloudService.getrealtimeallachievement(),
+
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return CircularProgressIndicator();
+              }
+              if (snapshot.hasError) {
+                return Text(snapshot.hasError.toString());
+              }
+              List<AchievementDataModel> achievements = snapshot.data!;
+
+              return ListView.separated(
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (
+                            context) => AchievementDetails(),
+                            settings: RouteSettings(
+                                arguments: achievements[index])));
+                        // Navigator.pushNamed(context, AppRouteName.AchievementDetails , arguments: achievements[index]) ;
+
+                      },
+                      child: SectionContainer(
+                          image: provider.isDark() ? achievements[index]
+                              .image != null
+                              ? achievements[index].image
+                              : Strings.AcheivementContainerdark :
+                          achievements[index].image != null
+                              ? achievements[index].image
+                              : Strings.AcheivementContainerlight,
+                          title: achievements[index].title),
+                    );
+                  },
+                  separatorBuilder: (context, index) {
+                    return SizedBox(height: 16,);
+                  },
+                  itemCount: achievements.length
+
+              );
+            }
+
+
+        ),
+      ),
 
       floatingActionButton: GestureDetector(
         onTap: () {

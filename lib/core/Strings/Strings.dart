@@ -15,4 +15,10 @@ class Strings {
   static const String complaintimageblack = "assets/images/complaint black.png";
 
   static const String complaintimagewhite = "assets/images/complaintwhite.png";
+
+  static const String AcheivementContainerlight =
+      "assets/images/achievementdarkgreen .png";
+
+  static const String AcheivementContainerdark =
+      "assets/images/achievementlightgreen.png";
 }

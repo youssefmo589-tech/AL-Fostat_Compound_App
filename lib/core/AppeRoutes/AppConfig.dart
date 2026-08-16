@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../Models/AchievementPage/AchievementDetails.dart';
 import '../../Models/AchievementPage/AchievementsPage.dart';
 import '../../Models/AchievementPage/AddAchievement.dart';
 import '../../Models/ComplaintPage/ComplaintPage.dart';
@@ -43,6 +44,9 @@ class AppConfig {
 
       case AppRouteName.AddAchievement:
         return MaterialPageRoute(builder: (context) => AddAchievement());
+
+      case AppRouteName.AchievementDetails:
+        return MaterialPageRoute(builder: (context) => AchievementDetails());
     }
   }
 }
