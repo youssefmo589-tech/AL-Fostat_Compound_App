@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "843129084223",
+    "project_id": "al-fostat-compund",
+    "storage_bucket": "al-fostat-compund.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843129084223:android:22c1a4cac7dd49a40e5b8a",
+        "android_client_info": {
+          "package_name": "com.example.alfostat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843129084223-kgel2ol4cvqv4foif0gr25k0qtrld0nn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alfostat",
+            "certificate_hash": "9ea428fd9bf5d9180f8d9ac19a2801fc4c9b28af"
+          }
+        },
+        {
+          "client_id": "843129084223-visumlpgo1sb0q4mmvv8s94tirdmj70e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyBwfNyonNnsPL5Cz0_RzjFUhBbizVU50"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843129084223-visumlpgo1sb0q4mmvv8s94tirdmj70e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "843129084223-n36speshi1gsr8ji4cns50q6pdi6vsh2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.alfostat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

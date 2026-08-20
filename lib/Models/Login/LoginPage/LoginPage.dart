@@ -1,21 +1,29 @@
+import 'package:alfostat/Models/Login/SignUpPage/SignupPage.dart';
 import 'package:alfostat/core/AppeRoutes/AppRouteName.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 
+import '../../../Services/BotToastservice.dart';
 import '../../../Widgets/CustomeButton.dart';
 import '../../../Widgets/CustomeTextField.dart';
 import '../../../core/AppTheme/AppColors.dart';
+import '../../../core/FirebaseServices/FirebaseAuth/FirebaseAuth.dart';
+import '../../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import '../../../core/gen/assets.gen.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+
+  const LoginPage({super.key});
 
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+
   final _formkey = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
 
@@ -168,13 +176,25 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     SizedBox(height: 40),
                     GestureDetector(
-                      onTap: () {
+                      onTap: () async {
                         if (_formkey.currentState!.validate()) {
-                          Navigator.pushNamedAndRemoveUntil(
-                            context,
-                            AppRouteName.LayoutView,
-                            (route) => false,
-                          );
+                          EasyLoading.show();
+
+                          final result = await AuthService.signInwithAccount(
+                              email.text, password.text);
+                          if (result) {
+                            EasyLoading.dismiss();
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              AppRouteName.LayoutView,
+                                  (route) => false,
+                            );
+                          }
+                          else {
+                            EasyLoading.dismiss();
+                            AppSnackBar.error("Not Existed , please signup");
+                          }
+
                         }
                       },
                       child: CustomeButton(title: "Login"),
@@ -249,7 +269,42 @@ class _LoginPageState extends State<LoginPage> {
                             width: 1.5,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () async {
+                          EasyLoading.show();
+
+                          final user = await AuthService.signInWithGoogle();
+                          if (user == null) {
+                            EasyLoading.dismiss();
+
+                            return;
+                          }
+                          else {
+                            final uid = user.user!.uid;
+                            try {
+                              final usermodel = await FireStoreCloudServiceUser
+                                  .getuser(uid);
+                              EasyLoading.dismiss();
+                              Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                AppRouteName.LayoutView,
+                                    (route) => false,
+                              );
+                            } catch (error) {
+                              await user.user!.delete();
+                              await FirebaseAuth.instance.signOut();
+
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      settings: RouteSettings(arguments: true),
+                                      builder: (context) => SignupPage()), (
+                                  route) => false);
+
+                              EasyLoading.dismiss();
+                              AppSnackBar.error(
+                                  "Not Existed Account , please signup");
+                            }
+                          }
+                        },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 9),
                           child: Row(

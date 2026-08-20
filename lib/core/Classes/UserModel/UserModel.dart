@@ -1,13 +1,17 @@
 class UserModel {
-  final String name;
+  static const String usercollectionname = "UserCollection";
 
-  final String email;
+  final String? name;
+
+  final String? userid;
+
+  final String? email;
 
   final String phone;
 
-  final String buildingNumber;
+  final String? buildingNumber;
 
-  final String apartmentNumber;
+  final String? apartmentNumber;
 
   final bool isTenant;
 
@@ -16,6 +20,7 @@ class UserModel {
   final bool isPay;
 
   UserModel({
+    this.userid,
     required this.name,
     required this.email,
     required this.phone,
@@ -29,6 +34,7 @@ class UserModel {
   factory UserModel.fromfirestore(Map<String, dynamic> json) {
     return UserModel(
       name: json["name"],
+      userid: json["userid"],
       email: json["email"],
       phone: json["phone"],
       buildingNumber: json["buildingNumber"],
@@ -42,6 +48,7 @@ class UserModel {
   Map<String, dynamic> tofirestore() {
     return {
       "name": name,
+      "userid": userid,
       "email": email,
       "phone": phone,
       "buildingNumber": buildingNumber,

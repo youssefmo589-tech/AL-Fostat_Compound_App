@@ -1,5 +1,11 @@
+import 'package:alfostat/Services/BotToastservice.dart';
+import 'package:alfostat/core/Classes/UserModel/UserModel.dart';
+import 'package:alfostat/core/FirebaseServices/FirebaseAuth/FirebaseAuth.dart';
+import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 
 import '../../../Widgets/CustomeButton.dart';
@@ -17,11 +23,13 @@ class SignupPage extends StatefulWidget {
 }
 
 class _SignupPageState extends State<SignupPage> {
-  String OwnerorTenant = "";
 
-  String BuildingNumber = "";
 
-  String ApartmentNumber = "";
+  String ? _OwnerorTenant;
+
+  String ? _buildingNumber;
+
+  String ? _apartmentNumber;
 
   final _formkey = GlobalKey<FormState>();
   TextEditingController email = TextEditingController();
@@ -41,6 +49,11 @@ class _SignupPageState extends State<SignupPage> {
   bool ishiddenconfirm = false;
 
   Widget build(BuildContext context) {
+    final isgoogleaccount =
+        ModalRoute
+            .of(context)
+            ?.settings
+            .arguments as bool? ?? false;
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
 
@@ -97,143 +110,148 @@ class _SignupPageState extends State<SignupPage> {
                           ),
                           SizedBox(height: 24),
 
-                          CustomeTextField(
-                            hinttxt: "Enter your name",
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "please , enter your name";
-                              }
+                          isgoogleaccount == false ? Column(
+                            children: [
+                              CustomeTextField(
+                                hinttxt: "Enter your name",
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "please , enter your name";
+                                  }
 
-                              return null;
-                            },
-                            controller: name,
-                            prefixIcon: Icon(
-                              Icons.person_outline,
-                              size: 24,
-                              color: AppColors.lighgreyev,
-                            ),
-                          ),
-                          SizedBox(height: 16),
-                          CustomeTextField(
-                            hinttxt: "Enter your email",
-                            validator: (value) {
-                              RegExp reg = RegExp(
-                                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                              );
-                              if (value == null || value.isEmpty) {
-                                return "please , enter your email";
-                              }
-                              if (!reg.hasMatch(value)) {
-                                return "please , enter a valid email";
-                              }
-                              return null;
-                            },
-                            controller: email,
-                            prefixIcon: Icon(
-                              Icons.email_outlined,
-                              size: 24,
-                              color: AppColors.lighgreyev,
-                            ),
-                          ),
-                          SizedBox(height: 16),
+                                  return null;
+                                },
+                                controller: name,
+                                prefixIcon: Icon(
+                                  Icons.person_outline,
+                                  size: 24,
+                                  color: AppColors.lighgreyev,
+                                ),
+                              ),
+                              SizedBox(height: 16),
+                              CustomeTextField(
+                                hinttxt: "Enter your email",
+                                validator: (value) {
+                                  RegExp reg = RegExp(
+                                    r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                                  );
+                                  if (value == null || value.isEmpty) {
+                                    return "please , enter your email";
+                                  }
+                                  if (!reg.hasMatch(value)) {
+                                    return "please , enter a valid email";
+                                  }
+                                  return null;
+                                },
+                                controller: email,
+                                prefixIcon: Icon(
+                                  Icons.email_outlined,
+                                  size: 24,
+                                  color: AppColors.lighgreyev,
+                                ),
+                              ),
+                              SizedBox(height: 16),
 
-                          CustomeTextField(
-                            hinttxt: "Enter your password",
-                            obscureText: ishidden,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "please enter your password";
-                              }
-                              RegExp reg = RegExp(
-                                r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
-                              );
-                              if (!reg.hasMatch(value)) {
-                                return "please enter correct password";
-                              }
-                              return null;
-                            },
-                            controller: password,
-                            prefixIcon: Icon(
-                              Icons.lock_outline,
-                              size: 24,
-                              color: AppColors.lighgreyev,
-                            ),
-                            suffixIcon: ishidden
-                                ? GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        ishidden = !ishidden;
-                                      });
-                                    },
-                                    child: Icon(
-                                      Icons.visibility_off_outlined,
-                                      size: 24,
-                                      color: AppColors.lighgreyev,
-                                    ),
-                                  )
-                                : GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        ishidden = !ishidden;
-                                      });
-                                    },
-                                    child: Icon(
-                                      Icons.visibility_outlined,
-                                      size: 24,
-                                      color: AppColors.lighgreyev,
-                                    ),
+                              CustomeTextField(
+                                hinttxt: "Enter your password",
+                                obscureText: ishidden,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "please enter your password";
+                                  }
+                                  RegExp reg = RegExp(
+                                    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
+                                  );
+                                  if (!reg.hasMatch(value)) {
+                                    return "please enter correct password";
+                                  }
+                                  return null;
+                                },
+                                controller: password,
+                                prefixIcon: Icon(
+                                  Icons.lock_outline,
+                                  size: 24,
+                                  color: AppColors.lighgreyev,
+                                ),
+                                suffixIcon: ishidden
+                                    ? GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      ishidden = !ishidden;
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.visibility_off_outlined,
+                                    size: 24,
+                                    color: AppColors.lighgreyev,
                                   ),
-                          ),
-
-                          SizedBox(height: 16),
-
-                          CustomeTextField(
-                            hinttxt: "confirm your password",
-                            obscureText: ishiddenconfirm,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "please enter your password";
-                              }
-                              if (value != password.text) {
-                                return "please enter correct password";
-                              }
-
-                              return null;
-                            },
-                            controller: confirmpasswordcontroller,
-                            prefixIcon: Icon(
-                              Icons.lock_outline,
-                              size: 24,
-                              color: AppColors.lighgreyev,
-                            ),
-                            suffixIcon: ishiddenconfirm
-                                ? GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        ishiddenconfirm = !ishiddenconfirm;
-                                      });
-                                    },
-                                    child: Icon(
-                                      Icons.visibility_off_outlined,
-                                      size: 24,
-                                      color: AppColors.lighgreyev,
-                                    ),
-                                  )
-                                : GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        ishiddenconfirm = !ishiddenconfirm;
-                                      });
-                                    },
-                                    child: Icon(
-                                      Icons.visibility_outlined,
-                                      size: 24,
-                                      color: AppColors.lighgreyev,
-                                    ),
+                                )
+                                    : GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      ishidden = !ishidden;
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.visibility_outlined,
+                                    size: 24,
+                                    color: AppColors.lighgreyev,
                                   ),
-                          ),
+                                ),
+                              ),
 
-                          SizedBox(height: 16),
+                              SizedBox(height: 16),
+
+                              CustomeTextField(
+                                hinttxt: "confirm your password",
+                                obscureText: ishiddenconfirm,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return "please enter your password";
+                                  }
+                                  if (value != password.text) {
+                                    return "please enter correct password";
+                                  }
+
+                                  return null;
+                                },
+                                controller: confirmpasswordcontroller,
+                                prefixIcon: Icon(
+                                  Icons.lock_outline,
+                                  size: 24,
+                                  color: AppColors.lighgreyev,
+                                ),
+                                suffixIcon: ishiddenconfirm
+                                    ? GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      ishiddenconfirm = !ishiddenconfirm;
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.visibility_off_outlined,
+                                    size: 24,
+                                    color: AppColors.lighgreyev,
+                                  ),
+                                )
+                                    : GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      ishiddenconfirm = !ishiddenconfirm;
+                                    });
+                                  },
+                                  child: Icon(
+                                    Icons.visibility_outlined,
+                                    size: 24,
+                                    color: AppColors.lighgreyev,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ) : SizedBox(),
+
+
+                          isgoogleaccount ? SizedBox() : SizedBox(height: 16),
                           CustomeTextField(
                             hinttxt: "Enter your Phone Number",
                             validator: (value) {
@@ -244,6 +262,9 @@ class _SignupPageState extends State<SignupPage> {
                                 return "please , enter your Phone Number";
                               }
                               if (!reg.hasMatch(value)) {
+                                return "please , enter a valid Number";
+                              }
+                              if (value.length > 11 || value.length < 11) {
                                 return "please , enter a valid Number";
                               }
                               return null;
@@ -295,19 +316,69 @@ class _SignupPageState extends State<SignupPage> {
                           ),
 
                           SizedBox(height: 40),
-                          GestureDetector(
-                            onTap: () {
+                          isgoogleaccount == false ? GestureDetector(
+                            onTap: () async {
                               if (_formkey.currentState!.validate()) {
-                                Navigator.pushNamedAndRemoveUntil(
-                                  context,
-                                  AppRouteName.LayoutView,
-                                  (route) => false,
-                                );
+                                if (_OwnerorTenant != null &&
+                                    _buildingNumber != null &&
+                                    _apartmentNumber != null) {
+                                  EasyLoading.show();
+                                  bool isaccountcreated = await AuthService
+                                      .createAccount(email.text, password.text);
+                                  if (isaccountcreated) {
+                                    UserModel user = UserModel(
+                                        name: name.text,
+                                        email: email.text,
+                                        phone: phone.text,
+                                        buildingNumber: _buildingNumber,
+                                        apartmentNumber: _apartmentNumber,
+                                        isTenant: _OwnerorTenant == "Tenant"
+                                            ? true
+                                            : false,
+                                        isOwner: _OwnerorTenant == "Owner"
+                                            ? true
+                                            : false,
+                                        isPay: false,
+                                        userid: FirebaseAuth.instance
+                                            .currentUser!.uid);
+
+
+                                    bool isusercreated = await FireStoreCloudServiceUser
+                                        .createuser(user);
+                                    if (isusercreated) {
+                                      EasyLoading.dismiss();
+                                      AppSnackBar.success(
+                                          "create user is success");
+                                      Navigator.pushNamedAndRemoveUntil(
+                                        context,
+                                        AppRouteName.LayoutView,
+                                            (route) => false,
+                                      );
+                                    }
+                                    else {
+                                      EasyLoading.dismiss();
+                                      AppSnackBar.error(
+                                          "create user is failed");
+                                    }
+                                  }
+                                  else {
+                                    EasyLoading.dismiss();
+                                    AppSnackBar.error(
+                                        "create account is failed");
+                                  }
+                                }
+                                else {
+                                  EasyLoading.dismiss();
+                                  AppSnackBar.error(
+                                      "Please Complete All Fields");
+                                }
+
+
                               }
                             },
                             child: CustomeButton(title: "Sign up"),
-                          ),
-                          SizedBox(height: 40),
+                          ) : SizedBox(),
+                          isgoogleaccount ? SizedBox() : SizedBox(height: 40),
                           Center(
                             child: Text.rich(
                               TextSpan(
@@ -377,7 +448,62 @@ class _SignupPageState extends State<SignupPage> {
                                   width: 1.5,
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () async {
+                                try {
+                                  if (_OwnerorTenant != null &&
+                                      _buildingNumber != null &&
+                                      _apartmentNumber != null &&
+                                      phone.text.isNotEmpty) {
+                                    await AuthService.signInWithGoogle();
+                                    final uid = FirebaseAuth.instance
+                                        .currentUser!.uid;
+                                    EasyLoading.show();
+                                    UserModel user = UserModel(
+                                        name: FirebaseAuth.instance.currentUser!
+                                            .displayName,
+                                        email: FirebaseAuth.instance
+                                            .currentUser!.email,
+                                        phone: phone.text,
+                                        buildingNumber: _buildingNumber,
+                                        apartmentNumber: _apartmentNumber,
+                                        isTenant: _OwnerorTenant == "Tenant"
+                                            ? true
+                                            : false,
+                                        isOwner: _OwnerorTenant == "Owner"
+                                            ? true
+                                            : false,
+                                        isPay: false,
+                                        userid: uid
+
+                                    );
+
+                                    final success = await FireStoreCloudServiceUser
+                                        .createuser(user);
+
+                                    EasyLoading.dismiss();
+
+                                    if (success) {
+                                      AppSnackBar.success(
+                                          "Create Account is Success");
+                                      Navigator.pushNamedAndRemoveUntil(
+                                          context, AppRouteName.LayoutView, (
+                                          route) => false);
+                                    } else {
+                                      AppSnackBar.error(
+                                          "Failed to create account");
+                                    }
+                                  }
+                                  else {
+                                    EasyLoading.dismiss();
+                                    AppSnackBar.error(
+                                        "Please Complete All Fields");
+                                  }
+                                } catch (error) {
+                                  EasyLoading.dismiss();
+                                  AppSnackBar.error(
+                                      "Please Complete All Fields");
+                                }
+                              },
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 9,
@@ -422,19 +548,20 @@ class _SignupPageState extends State<SignupPage> {
 
   void onchangedownerortenant(String value) {
     setState(() {
-      OwnerorTenant = value;
+      _OwnerorTenant = value;
     });
   }
 
   void onchangedBuildingNumber(String value) {
     setState(() {
-      BuildingNumber = value;
+      _buildingNumber = value;
     });
   }
 
   void onchangedApartmentNumber(String value) {
     setState(() {
-      ApartmentNumber = value;
+      _apartmentNumber = value;
     });
   }
+
 }

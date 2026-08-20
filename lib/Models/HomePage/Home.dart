@@ -1,11 +1,14 @@
 import 'package:alfostat/Models/HomePage/secionContainer.dart';
 import 'package:alfostat/core/Strings/Strings.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/AppeRoutes/AppRouteName.dart';
+import '../../core/Classes/UserModel/UserModel.dart';
+import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import '../../core/gen/assets.gen.dart';
 import 'CategoryModel.dart';
 
@@ -16,24 +19,45 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List<CategoryModel> categories = [
+    CategoryModel(
+      imagelight: Strings.AchievementLight,
+      imagedark: Strings.AchievementBlack,
+      title: Strings.AchievementTitle,
+    ),
+    CategoryModel(
+      imagelight: Strings.MonthlyLight,
+      imagedark: Strings.MonthlyBlack,
+      title: Strings.MonthlyTitle,
+    ),
+    CategoryModel(
+      imagelight: Strings.complaintimagewhite,
+      imagedark: Strings.complaintimageblack,
+      title: Strings.ComplaintTitle,
+    ),
+  ];
+
+  Future<UserModel> loaduser() async {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    final user = await FireStoreCloudServiceUser.getuser(uid);
+    return user;
+  }
+
+  UserModel? user;
+
+  Future<void> Loaduserdata() async {
+    final data = await loaduser();
+    setState(() {
+      user = data;
+    });
+  }
+
+  void initState() {
+    super.initState();
+    Loaduserdata();
+  }
+
   Widget build(BuildContext context) {
-    List<CategoryModel> categories = [
-      CategoryModel(
-        imagelight: Strings.AchievementLight,
-        imagedark: Strings.AchievementBlack,
-        title: Strings.AchievementTitle,
-      ),
-      CategoryModel(
-        imagelight: Strings.MonthlyLight,
-        imagedark: Strings.MonthlyBlack,
-        title: Strings.MonthlyTitle,
-      ),
-      CategoryModel(
-        imagelight: Strings.complaintimagewhite,
-        imagedark: Strings.complaintimageblack,
-        title: Strings.ComplaintTitle,
-      ),
-    ];
     final theme = Theme.of(context).textTheme;
     final provider = Provider.of<SettingProvider>(context);
     return SafeArea(
@@ -58,7 +82,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Text(
-                        "Youssef Mohamed",
+                        user?.name ?? "Loading",
                         style: theme.titleMedium?.copyWith(
                           color: provider.isDark()
                               ? AppColors.white

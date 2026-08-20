@@ -178,7 +178,7 @@ class _EditAchievementState extends State<EditAchievement> {
                     AppSnackBar.error("Complete all fields");
                   }
                 },
-                child: CustomeButton(title: "Edit Achievement"),
+                child: CustomeButton(title: "Update Achievement"),
               ),
             ],
           ),

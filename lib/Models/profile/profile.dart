@@ -1,9 +1,13 @@
 import 'package:alfostat/core/provider/SettingProvider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/AppTheme/AppColors.dart';
+import '../../core/AppeRoutes/AppRouteName.dart';
+import '../../core/Classes/UserModel/UserModel.dart';
+import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import 'SettingOptions.dart';
 
 class Profile extends StatefulWidget {
@@ -13,6 +17,28 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+
+  Future<UserModel> loaduser() async
+  {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    final user = await FireStoreCloudServiceUser.getuser(uid);
+    return user;
+  }
+
+  UserModel ? user;
+
+  Future<void> Loaduserdata() async
+  {
+    final data = await loaduser();
+    setState(() {
+      user = data;
+    });
+  }
+
+  void initState() {
+    super.initState();
+    Loaduserdata();
+  }
 
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
@@ -30,7 +56,7 @@ class _ProfileState extends State<Profile> {
               spacing: 4,
               children: [
                 Text(
-                  "Youssef Mohamed",
+                  user?.name ?? "Name...",
                   style: theme.titleLarge?.copyWith(
                     fontSize: 20,
                     color: provider.isDark()
@@ -39,13 +65,38 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
                 Text(
-                  "johnsafwat.route@gmail.com",
+                  user?.email ?? "Email...",
                   style: theme.titleSmall?.copyWith(
                     color: provider.isDark()
                         ? AppColors.lighgrey
                         : AppColors.darkgrey,
                   ),
                 ),
+                Text(
+                  "PhoneNumber : ${user?.phone ?? "phone..."}",
+                  style: theme.titleSmall?.copyWith(
+                    color: provider.isDark()
+                        ? AppColors.lighgrey
+                        : AppColors.darkgrey,
+                  ),
+                ),
+                Text(
+                  "BuildinNumber : ${user?.buildingNumber ?? "..."}",
+                  style: theme.titleSmall?.copyWith(
+                    color: provider.isDark()
+                        ? AppColors.lighgrey
+                        : AppColors.darkgrey,
+                  ),
+                ),
+                Text(
+                  "apartmentNumber : ${user?.apartmentNumber ?? "..."}",
+                  style: theme.titleSmall?.copyWith(
+                    color: provider.isDark()
+                        ? AppColors.lighgrey
+                        : AppColors.darkgrey,
+                  ),
+                ),
+
               ],
             ),
 
@@ -82,9 +133,16 @@ class _ProfileState extends State<Profile> {
                         : AppColors.darkgreen,
                   ),
                 ),
-                SettingOptions(
-                  Optionname: "Logout",
-                  optionicon: Icon(Icons.logout, color: Colors.red),
+                GestureDetector(
+                  onTap: () async {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, AppRouteName.LoginPage, (route) => false);
+                  },
+                  child: SettingOptions(
+                    Optionname: "Logout",
+                    optionicon: Icon(Icons.logout, color: Colors.red),
+                  ),
                 ),
               ],
             ),

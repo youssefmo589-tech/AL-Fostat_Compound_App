@@ -26,12 +26,11 @@ class AppSnackBar {
     BotToast.showCustomNotification(
       duration: const Duration(seconds: 3),
       enableSlideOff: true,
-      // تقدر تسحبها لإغلاقها
+
       onlyOne: true,
       crossPage: true,
       align: const Alignment(0, -0.92),
 
-      // أعلى الشاشة
       toastBuilder: (_) {
         return Material(
           color: Colors.transparent,

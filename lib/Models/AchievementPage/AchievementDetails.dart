@@ -1,6 +1,7 @@
 import 'package:alfostat/Models/AchievementPage/AchieveMentDataModel.dart';
 import 'package:alfostat/Models/AchievementPage/EditAchievement.dart';
 import 'package:alfostat/Models/HomePage/secionContainer.dart';
+import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FirestoreCloudService.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -56,7 +57,13 @@ class AchievementDetails extends StatelessWidget {
             ),
           ),
           SizedBox(width: 8),
-          Icon(Icons.delete_outline, color: Colors.red, size: 24),
+          GestureDetector(
+              onTap: () {
+                FireStoreCloudService.deleteachievement(
+                    achievement.AchievementID!);
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.delete_outline, color: Colors.red, size: 24)),
           SizedBox(width: 16),
         ],
       ),
@@ -68,11 +75,9 @@ class AchievementDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SectionContainer(
-              image: achievement.image != null
-                  ? achievement.image
-                  : provider.isDark()
+              image: achievement.image ?? (provider.isDark()
                   ? Strings.AcheivementContainerdark
-                  : Strings.AcheivementContainerlight,
+                  : Strings.AcheivementContainerlight),
             ),
             Text(
               achievement.title,
