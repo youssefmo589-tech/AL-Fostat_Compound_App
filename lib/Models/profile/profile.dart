@@ -1,3 +1,4 @@
+import 'package:alfostat/Models/profile/profileCard.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -53,49 +54,18 @@ class _ProfileState extends State<Profile> {
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              spacing: 4,
+              spacing: 8,
               children: [
-                Text(
-                  user?.name ?? "Name...",
-                  style: theme.titleLarge?.copyWith(
-                    fontSize: 20,
-                    color: provider.isDark()
-                        ? AppColors.white
-                        : AppColors.black,
-                  ),
-                ),
-                Text(
-                  user?.email ?? "Email...",
-                  style: theme.titleSmall?.copyWith(
-                    color: provider.isDark()
-                        ? AppColors.lighgrey
-                        : AppColors.darkgrey,
-                  ),
-                ),
-                Text(
-                  "PhoneNumber : ${user?.phone ?? "phone..."}",
-                  style: theme.titleSmall?.copyWith(
-                    color: provider.isDark()
-                        ? AppColors.lighgrey
-                        : AppColors.darkgrey,
-                  ),
-                ),
-                Text(
-                  "BuildinNumber : ${user?.buildingNumber ?? "..."}",
-                  style: theme.titleSmall?.copyWith(
-                    color: provider.isDark()
-                        ? AppColors.lighgrey
-                        : AppColors.darkgrey,
-                  ),
-                ),
-                Text(
-                  "apartmentNumber : ${user?.apartmentNumber ?? "..."}",
-                  style: theme.titleSmall?.copyWith(
-                    color: provider.isDark()
-                        ? AppColors.lighgrey
-                        : AppColors.darkgrey,
-                  ),
-                ),
+
+                ProfileCard(title: "Name :  ${ user?.name ?? "Name..."}",),
+                ProfileCard(title: "Email :  ${ user?.email ?? "Email..."}",),
+                ProfileCard(
+                  title: "PhoneNumber :  ${user?.phone ?? "phone..."}",),
+                ProfileCard(
+                  title: "BuildinNumber :  ${user?.buildingNumber ?? "..."}",),
+                ProfileCard(
+                  title: "apartmentNumber :  ${user?.apartmentNumber ??
+                      "..."}",),
 
               ],
             ),

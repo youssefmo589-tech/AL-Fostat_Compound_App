@@ -4,6 +4,7 @@ import 'package:alfostat/core/AppeRoutes/AppRouteName.dart';
 import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FirestoreCloudService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/Strings/Strings.dart';
@@ -51,7 +52,20 @@ class _AchievementsPageState extends State<AchievementsPage> {
 
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return CircularProgressIndicator();
+                return ListView.separated(
+                    itemBuilder: (cotext, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Skeletonizer(child: Bone(
+                          height: 220, width: double.infinity,
+
+                        )),
+                      );
+                    },
+                    separatorBuilder: (context, index) {
+                      return SizedBox(height: 16,);
+                    },
+                    itemCount: 4);
               }
               if (snapshot.hasError) {
                 return Text(snapshot.hasError.toString());
@@ -71,12 +85,9 @@ class _AchievementsPageState extends State<AchievementsPage> {
                       },
                       child: SectionContainer(
                           image: provider.isDark() ? achievements[index]
-                              .image != null
-                              ? achievements[index].image
-                              : Strings.AcheivementContainerdark :
-                          achievements[index].image != null
-                              ? achievements[index].image
-                              : Strings.AcheivementContainerlight,
+                              .image ?? Strings.AcheivementContainerdark :
+                          achievements[index].image ??
+                              Strings.AcheivementContainerlight,
                           title: achievements[index].title),
                     );
                   },

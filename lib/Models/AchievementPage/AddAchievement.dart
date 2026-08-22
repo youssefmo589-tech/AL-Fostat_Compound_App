@@ -2,6 +2,7 @@ import 'package:alfostat/Models/AchievementPage/AchieveMentDataModel.dart';
 import 'package:alfostat/Services/BotToastservice.dart';
 import 'package:alfostat/Widgets/CustomeButton.dart';
 import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FirestoreCloudService.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
@@ -9,6 +10,8 @@ import 'package:provider/provider.dart';
 
 import '../../Widgets/CustomeTextField.dart';
 import '../../core/AppTheme/AppColors.dart';
+import '../../core/Classes/UserModel/UserModel.dart';
+import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import '../../core/Strings/Strings.dart';
 import '../../core/provider/SettingProvider.dart';
 import '../HomePage/secionContainer.dart';
@@ -20,6 +23,29 @@ class AddAchievement extends StatefulWidget {
 }
 
 class _AddAchievementState extends State<AddAchievement> {
+
+  Future<UserModel> loaduser() async
+  {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    final user = await FireStoreCloudServiceUser.getuser(uid);
+    return user;
+  }
+
+  UserModel ? user;
+
+  Future<void> Loaduserdata() async
+  {
+    final data = await loaduser();
+    setState(() {
+      user = data;
+    });
+  }
+
+  void initState() {
+    super.initState();
+    Loaduserdata();
+  }
+
 
   DateTime ? _selectedDate;
   TextEditingController title = TextEditingController();
@@ -139,9 +165,12 @@ class _AddAchievementState extends State<AddAchievement> {
                         .isNotEmpty) {
                       EasyLoading.show();
                       final achievement = AchievementDataModel(
+                        author: user!.name,
                           title: title.text.trim(),
                           description: descrption.text.trim(),
-                          date: _selectedDate);
+                        date: _selectedDate,
+                        userid: FirebaseAuth.instance.currentUser!.uid,
+                      );
                       bool isadded = await FireStoreCloudService
                           .createAchievement(achievement);
                       if (isadded) {

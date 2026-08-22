@@ -26,7 +26,7 @@ class TabBarItem extends StatelessWidget {
                   ? AppColors.green
                   : AppColors.darkgreen
             : provider.isDark()
-            ? AppColors.lighgrey
+            ? Colors.black
             : AppColors.white,
         borderRadius: BorderRadius.circular(16),
       ),

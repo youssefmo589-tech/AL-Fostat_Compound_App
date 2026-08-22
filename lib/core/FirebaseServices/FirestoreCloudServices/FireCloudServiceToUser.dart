@@ -67,4 +67,9 @@ class FireStoreCloudServiceUser {
       return [];
     }
   }
+
+  static Stream<QuerySnapshot<UserModel>> getrealtimeusers() {
+    final collectionref = getcollectionref();
+    return collectionref.snapshots();
+  }
 }
