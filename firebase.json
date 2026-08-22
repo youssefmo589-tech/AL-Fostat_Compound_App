@@ -1,0 +1,22 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "al-fostat-compund",
+          "appId": "1:843129084223:android:22c1a4cac7dd49a40e5b8a",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "al-fostat-compund",
+          "configurations": {
+            "android": "1:843129084223:android:22c1a4cac7dd49a40e5b8a",
+            "ios": "1:843129084223:ios:dfdb6088597b29090e5b8a"
+          }
+        }
+      }
+    }
+  }
+}
