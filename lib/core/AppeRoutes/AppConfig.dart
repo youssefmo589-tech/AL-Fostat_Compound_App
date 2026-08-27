@@ -1,8 +1,10 @@
+import 'package:alfostat/Models/ComplaintPage/AddComplaint.dart';
 import 'package:flutter/material.dart';
 
 import '../../Models/AchievementPage/AchievementDetails.dart';
 import '../../Models/AchievementPage/AchievementsPage.dart';
 import '../../Models/AchievementPage/AddAchievement.dart';
+import '../../Models/ComplaintPage/ComplaintDetails.dart';
 import '../../Models/ComplaintPage/ComplaintPage.dart';
 import '../../Models/HomePage/Home.dart';
 import '../../Models/Login/ForgetPasswordPage/ForgetPasswordPage.dart';
@@ -47,6 +49,15 @@ class AppConfig {
 
       case AppRouteName.AchievementDetails:
         return MaterialPageRoute(builder: (context) => AchievementDetails());
+
+      case AppRouteName.ForgetPasswordPage:
+        return MaterialPageRoute(builder: (context) => ForgetPasswordPage());
+
+      case AppRouteName.AddComplaint:
+        return MaterialPageRoute(builder: (context) => AddComplaint());
+
+      case AppRouteName.ComplaintDetails:
+        return MaterialPageRoute(builder: (context) => ComplaintDetails());
     }
   }
 }

@@ -20,4 +20,8 @@ class AppRouteName {
   static const String AddAchievement = '/AddAchievement';
 
   static const String AchievementDetails = '/AchievementDetails';
+
+  static const String AddComplaint = '/AddComplaint';
+
+  static const String ComplaintDetails = '/ComplaintDetails';
 }
