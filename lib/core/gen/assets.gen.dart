@@ -14,6 +14,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart' as _svg;
 import 'package:vector_graphics/vector_graphics.dart' as _vg;
 
+class $AssetsLottiesGen {
+  const $AssetsLottiesGen();
+
+  /// File path: assets/Lotties/empty.json
+  String get empty => 'assets/Lotties/empty.json';
+
+  /// List of all assets
+  List<String> get values => [empty];
+}
+
 class $AssetsFontsGen {
   const $AssetsFontsGen();
 
@@ -68,6 +78,10 @@ class $AssetsImagesGen {
   AssetGenImage get achievementdarkgreen =>
       const AssetGenImage('assets/images/achievementdarkgreen .png');
 
+  /// File path: assets/images/achievementlightgreen.png
+  AssetGenImage get achievementlightgreen =>
+      const AssetGenImage('assets/images/achievementlightgreen.png');
+
   /// File path: assets/images/achievementphoto.png
   AssetGenImage get achievementphoto =>
       const AssetGenImage('assets/images/achievementphoto.png');
@@ -79,6 +93,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/complaint black.png
   AssetGenImage get complaintBlack =>
       const AssetGenImage('assets/images/complaint black.png');
+
+  /// File path: assets/images/complaintpagelight.png
+  AssetGenImage get complaintpagelight =>
+      const AssetGenImage('assets/images/complaintpagelight.png');
 
   /// File path: assets/images/complaintwhite.png
   AssetGenImage get complaintwhite =>
@@ -111,6 +129,18 @@ class $AssetsImagesGen {
   /// File path: assets/images/google.png
   AssetGenImage get google => const AssetGenImage('assets/images/google.png');
 
+  /// File path: assets/images/onboarding page1.png
+  AssetGenImage get onboardingPage1 =>
+      const AssetGenImage('assets/images/onboarding page1.png');
+
+  /// File path: assets/images/onboarding page2.png
+  AssetGenImage get onboardingPage2 =>
+      const AssetGenImage('assets/images/onboarding page2.png');
+
+  /// File path: assets/images/onboardingpage3.png
+  AssetGenImage get onboardingpage3 =>
+      const AssetGenImage('assets/images/onboardingpage3.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     achieveMentLight,
@@ -118,9 +148,11 @@ class $AssetsImagesGen {
     monthluLight,
     monthlyBlack,
     achievementdarkgreen,
+    achievementlightgreen,
     achievementphoto,
     changepass,
     complaintBlack,
+    complaintpagelight,
     complaintwhite,
     fostatpageLogoBlack,
     fostatpagelogogreen,
@@ -129,10 +161,14 @@ class $AssetsImagesGen {
     fostatsplashgreen01,
     fostatsplashlightgrey01,
     google,
+    onboardingPage1,
+    onboardingPage2,
+    onboardingpage3,
   ];
 }
 
 abstract final class Assets {
+  static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();

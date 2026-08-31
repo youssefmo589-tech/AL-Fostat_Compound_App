@@ -5,6 +5,7 @@ import '../../core/AppTheme/AppColors.dart';
 import '../../core/AppeRoutes/AppRouteName.dart';
 import '../../core/gen/assets.gen.dart';
 import '../../core/provider/SettingProvider.dart';
+import '../Onboarding/SharedprefService.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,13 +17,28 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 4), () {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        AppRouteName.LoginPage,
-        (route) => false,
-      ); ////// layouttttttttt
-    });
+    checkOnBoarding();
+  }
+
+  Future<void> checkOnBoarding() async {
+    bool isseen = await SharePrefService.getSeen();
+    if (isseen) {
+      Future.delayed(Duration(seconds: 4), () {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          AppRouteName.LoginPage,
+          (route) => false,
+        );
+      });
+    } else {
+      Future.delayed(Duration(seconds: 4), () {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          AppRouteName.OnBoardingPage,
+          (route) => false,
+        ); ////// layouttttttttt
+      });
+    }
   }
 
   Widget build(BuildContext context) {

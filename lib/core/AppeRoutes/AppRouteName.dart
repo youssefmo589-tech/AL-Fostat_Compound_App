@@ -25,5 +25,7 @@ class AppRouteName {
 
   static const String ComplaintDetails = '/ComplaintDetails';
 
+  static const String OnBoardingPage = '/OnBoardingPage';
+
   // static const String VerifyMyEmail = '/VerifyMyEmail';
 }
