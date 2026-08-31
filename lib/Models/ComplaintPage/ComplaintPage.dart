@@ -3,6 +3,7 @@ import 'package:alfostat/Models/HomePage/secionContainer.dart';
 import 'package:alfostat/core/AppeRoutes/AppRouteName.dart';
 import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FireStoreCloudServiceComplaint.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -74,7 +75,9 @@ class _ComplaintsPageState extends State<ComplaintPage> {
               }
               List<ComplaintDataModel> complaints = snapshot.data!;
 
-              return ListView.separated(
+              return complaints.isEmpty ? Center(
+                  child: Lottie.asset(Strings.LottieEmpty)) : ListView
+                  .separated(
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -82,14 +85,13 @@ class _ComplaintsPageState extends State<ComplaintPage> {
                             context) => ComplaintDetails(),
                             settings: RouteSettings(
                                 arguments: complaints[index])));
-                        // Navigator.pushNamed(context, AppRouteName.AchievementDetails , arguments: achievements[index]) ;
 
                       },
                       child: SectionContainer(
                           image: provider.isDark() ? complaints[index]
-                              .image ?? Strings.AcheivementContainerdark :
+                              .image ?? Strings.complaintpagelight :
                           complaints[index].image ??
-                              Strings.AcheivementContainerlight,
+                              Strings.complaintpagelight,
                           title: complaints[index].title),
                     );
                   },

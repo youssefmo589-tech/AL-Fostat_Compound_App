@@ -1,5 +1,6 @@
 import 'package:alfostat/Models/AchievementPage/AchieveMentDataModel.dart';
 import 'package:alfostat/Services/BotToastservice.dart';
+import 'package:alfostat/Services/NotificationService.dart';
 import 'package:alfostat/Widgets/CustomeButton.dart';
 import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FirestoreCloudService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -28,7 +29,7 @@ class _AddAchievementState extends State<AddAchievement> {
   {
     final uid = FirebaseAuth.instance.currentUser!.uid;
     final user = await FireStoreCloudServiceUser.getuser(uid);
-    return user;
+    return user!;
   }
 
   UserModel ? user;
@@ -174,6 +175,13 @@ class _AddAchievementState extends State<AddAchievement> {
                       bool isadded = await FireStoreCloudService
                           .createAchievement(achievement);
                       if (isadded) {
+                        await NotificationService.sendNotification(
+                          title: "New Achievement 🎉",
+                          message: "${user!
+                              .name} added a new achievement: ${achievement
+                              .title}",
+                        );
+
                         EasyLoading.dismiss();
                         AppSnackBar.success("Achievement Added Successfully");
                         Navigator.pop(context);

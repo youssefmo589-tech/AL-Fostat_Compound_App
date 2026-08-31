@@ -3,6 +3,7 @@ import 'package:alfostat/core/Classes/UserModel/UserModel.dart';
 import 'package:alfostat/core/FirebaseServices/FirebaseAuth/FirebaseAuth.dart';
 import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -322,6 +323,19 @@ class _SignupPageState extends State<SignupPage> {
                                 if (_OwnerorTenant != null &&
                                     _buildingNumber != null &&
                                     _apartmentNumber != null) {
+                                  final isapartmentexist = await FireStoreCloudServiceUser
+                                      .isapartmentexist(
+                                      _buildingNumber!, _apartmentNumber!);
+
+                                  if (isapartmentexist) {
+                                    AppSnackBar.error(
+                                        "this apartment is already exist");
+                                    return;
+                                  }
+
+                                  final token = await FirebaseMessaging.instance
+                                      .getToken();
+
                                   EasyLoading.show();
                                   bool isaccountcreated = await AuthService
                                       .createAccount(email.text, password.text);
@@ -340,7 +354,10 @@ class _SignupPageState extends State<SignupPage> {
                                             : false,
                                         isPay: false,
                                         userid: FirebaseAuth.instance
-                                            .currentUser!.uid);
+                                            .currentUser!.uid,
+
+                                      fcmtoken: token,
+                                    );
 
 
                                     bool isusercreated = await FireStoreCloudServiceUser
@@ -454,6 +471,18 @@ class _SignupPageState extends State<SignupPage> {
                                       _buildingNumber != null &&
                                       _apartmentNumber != null &&
                                       phone.text.isNotEmpty) {
+                                    final isapartmentexist = await FireStoreCloudServiceUser
+                                        .isapartmentexist(
+                                        _buildingNumber!, _apartmentNumber!);
+
+                                    if (isapartmentexist) {
+                                      AppSnackBar.error(
+                                          "this apartment is already exist");
+                                      return;
+                                    }
+                                    final token = await FirebaseMessaging
+                                        .instance.getToken();
+
                                     await AuthService.signInWithGoogle();
                                     final uid = FirebaseAuth.instance
                                         .currentUser!.uid;
@@ -464,6 +493,7 @@ class _SignupPageState extends State<SignupPage> {
                                         email: FirebaseAuth.instance
                                             .currentUser!.email,
                                         phone: phone.text,
+                                        fcmtoken: token,
                                         buildingNumber: _buildingNumber,
                                         apartmentNumber: _apartmentNumber,
                                         isTenant: _OwnerorTenant == "Tenant"

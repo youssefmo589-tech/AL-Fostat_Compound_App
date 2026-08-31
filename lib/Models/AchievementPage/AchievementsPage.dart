@@ -3,6 +3,7 @@ import 'package:alfostat/Models/HomePage/secionContainer.dart';
 import 'package:alfostat/core/AppeRoutes/AppRouteName.dart';
 import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FirestoreCloudService.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
@@ -72,7 +73,9 @@ class _AchievementsPageState extends State<AchievementsPage> {
               }
               List<AchievementDataModel> achievements = snapshot.data!;
 
-              return ListView.separated(
+              return achievements.isEmpty ? Center(
+                  child: Lottie.asset(Strings.LottieEmpty)) : ListView
+                  .separated(
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
@@ -80,7 +83,6 @@ class _AchievementsPageState extends State<AchievementsPage> {
                             context) => AchievementDetails(),
                             settings: RouteSettings(
                                 arguments: achievements[index])));
-                        // Navigator.pushNamed(context, AppRouteName.AchievementDetails , arguments: achievements[index]) ;
 
                       },
                       child: SectionContainer(

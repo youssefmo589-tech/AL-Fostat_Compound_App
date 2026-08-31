@@ -2,6 +2,7 @@ import 'package:alfostat/Models/Login/SignUpPage/SignupPage.dart';
 import 'package:alfostat/core/AppeRoutes/AppRouteName.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -183,6 +184,16 @@ class _LoginPageState extends State<LoginPage> {
                           final result = await AuthService.signInwithAccount(
                               email.text, password.text);
                           if (result) {
+                            final uid = FirebaseAuth.instance.currentUser!.uid;
+                            final token = await FirebaseMessaging.instance
+                                .getToken();
+                            final updatetoken = await FireStoreCloudServiceUser
+                                .updatefcmtoken(uid, token!);
+                            if (updatetoken == false) {
+                              EasyLoading.dismiss();
+                              AppSnackBar.error("something went wrong");
+                              return;
+                            }
                             EasyLoading.dismiss();
                             Navigator.pushNamedAndRemoveUntil(
                               context,
@@ -192,7 +203,8 @@ class _LoginPageState extends State<LoginPage> {
                           }
                           else {
                             EasyLoading.dismiss();
-                            AppSnackBar.error("Not Existed , please signup");
+                            AppSnackBar.error(
+                                "Not Exist ,try again with a correct password & email Or signup");
                           }
 
                         }
@@ -275,33 +287,44 @@ class _LoginPageState extends State<LoginPage> {
                           final user = await AuthService.signInWithGoogle();
                           if (user == null) {
                             EasyLoading.dismiss();
-
+                            AppSnackBar.warning("Google signin canceled");
                             return;
                           }
                           else {
-                            final uid = user.user!.uid;
                             try {
+                              final uid = user.user!.uid;
                               final usermodel = await FireStoreCloudServiceUser
                                   .getuser(uid);
-                              EasyLoading.dismiss();
-                              Navigator.pushNamedAndRemoveUntil(
-                                context,
-                                AppRouteName.LayoutView,
-                                    (route) => false,
-                              );
+
+                              if (usermodel != null) {
+                                final token = await FirebaseMessaging.instance
+                                    .getToken();
+                                final updatetoken = await FireStoreCloudServiceUser
+                                    .updatefcmtoken(uid, token!);
+                                EasyLoading.dismiss();
+                                Navigator.pushNamedAndRemoveUntil(
+                                  context,
+                                  AppRouteName.LayoutView,
+                                      (route) => false,
+                                );
+                              }
+                              else {
+                                await user.user!.delete();
+                                await FirebaseAuth.instance.signOut();
+
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        settings: RouteSettings(
+                                            arguments: true),
+                                        builder: (context) => SignupPage()), (
+                                    route) => false);
+
+                                EasyLoading.dismiss();
+                                AppSnackBar.warning(
+                                    "Account Not Exist , please signup");
+                              }
                             } catch (error) {
-                              await user.user!.delete();
-                              await FirebaseAuth.instance.signOut();
-
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      settings: RouteSettings(arguments: true),
-                                      builder: (context) => SignupPage()), (
-                                  route) => false);
-
-                              EasyLoading.dismiss();
-                              AppSnackBar.error(
-                                  "Not Existed Account , please signup");
+                              AppSnackBar.error("something went wrong");
                             }
                           }
                         },

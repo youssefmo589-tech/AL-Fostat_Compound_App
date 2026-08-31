@@ -89,8 +89,8 @@ class ComplaintDetails extends StatelessWidget {
                 image:
                     complaint.image ??
                     (provider.isDark()
-                        ? Strings.AcheivementContainerdark
-                        : Strings.AcheivementContainerlight),
+                        ? Strings.complaintpagelight
+                        : Strings.complaintpagelight),
               ),
               Text(
                 complaint.title,

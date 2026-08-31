@@ -21,4 +21,9 @@ class Strings {
 
   static const String AcheivementContainerdark =
       "assets/images/achievementlightgreen.png";
+
+  static const String LottieEmpty = "assets/Lotties/empty.json";
+
+  static const String complaintpagelight =
+      "assets/images/complaintpagelight.png";
 }

@@ -1,15 +1,14 @@
-import 'package:alfostat/Models/AchievementPage/AchieveMentDataModel.dart';
 import 'package:alfostat/Models/ComplaintPage/ComplaintDataModel.dart';
 import 'package:alfostat/Services/BotToastservice.dart';
 import 'package:alfostat/Widgets/CustomeButton.dart';
 import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FireStoreCloudServiceComplaint.dart';
-import 'package:alfostat/core/FirebaseServices/FirestoreCloudServices/FirestoreCloudService.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
+import '../../Services/NotificationService.dart';
 import '../../Widgets/CustomeTextField.dart';
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/Classes/UserModel/UserModel.dart';
@@ -28,7 +27,7 @@ class _AddComplaintState extends State<AddComplaint> {
   Future<UserModel> loaduser() async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
     final user = await FireStoreCloudServiceUser.getuser(uid);
-    return user;
+    return user!;
   }
 
   UserModel? user;
@@ -184,6 +183,11 @@ class _AddComplaintState extends State<AddComplaint> {
                           complaint,
                         );
                     if (isadded) {
+                      await NotificationService.sendNotification(
+                        title: "New Complaint 📢",
+                        message:
+                            "${user!.name} added a new complaint: ${complaint.title}",
+                      );
                       EasyLoading.dismiss();
                       AppSnackBar.success("Complaint Added Successfully");
                       Navigator.pop(context);

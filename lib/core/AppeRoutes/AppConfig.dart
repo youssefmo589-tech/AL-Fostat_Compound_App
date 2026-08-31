@@ -58,6 +58,9 @@ class AppConfig {
 
       case AppRouteName.ComplaintDetails:
         return MaterialPageRoute(builder: (context) => ComplaintDetails());
+
+      // case AppRouteName.VerifyMyEmail:
+      //   return MaterialPageRoute(builder: (context) => VerifyMyEmail());
     }
   }
 }

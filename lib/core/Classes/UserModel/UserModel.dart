@@ -19,6 +19,8 @@ class UserModel {
 
   final bool isPay;
 
+  final String ? fcmtoken;
+
   UserModel({
     this.userid,
     required this.name,
@@ -29,6 +31,7 @@ class UserModel {
     this.isTenant = false,
     this.isOwner = false,
     this.isPay = false,
+    this.fcmtoken
   });
 
   factory UserModel.fromfirestore(Map<String, dynamic> json) {
@@ -42,6 +45,7 @@ class UserModel {
       isTenant: json['isTenant'],
       isOwner: json['isOwner'],
       isPay: json['isPay'],
+        fcmtoken: json['fcmtoken']
     );
   }
 
@@ -56,6 +60,7 @@ class UserModel {
       "isTenant": isTenant,
       "isOwner": isOwner,
       "isPay": isPay,
+      "fcmtoken": fcmtoken
     };
   }
 }

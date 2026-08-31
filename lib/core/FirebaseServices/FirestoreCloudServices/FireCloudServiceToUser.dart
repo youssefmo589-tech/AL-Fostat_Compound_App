@@ -48,11 +48,14 @@ class FireStoreCloudServiceUser {
     }
   }
 
-  static Future<UserModel> getuser(String userid) async {
+  static Future<UserModel ?> getuser(String userid) async {
     final collectionref = getcollectionref();
 
     final user = await collectionref.doc(userid).get();
-    return user.data()!;
+    if (!user.exists) {
+      return null;
+    }
+    return user.data();
   }
 
   static Future<List<UserModel>> getusers(String Buildingnumber) async {
@@ -72,4 +75,50 @@ class FireStoreCloudServiceUser {
     final collectionref = getcollectionref();
     return collectionref.snapshots();
   }
+
+
+  // static Future<bool> isapartmentexist(String buildingnumber , String apartmentnumber)async
+  // {
+  //
+  //   final collectionref =  getcollectionref();
+  //   final data = await collectionref.get() ;
+  //
+  //   for(var user in data.docs)
+  //   {
+  //     if(user.data().buildingNumber == buildingnumber && user.data().apartmentNumber == apartmentnumber)
+  //       {
+  //         return Future.value(true) ;
+  //       }
+  //
+  //   }
+  //   return Future.value(false) ;
+  //
+  //
+  // }
+
+  static Future<bool> isapartmentexist(String buildingnumber,
+      String apartmentnumber) async
+  {
+    final collectionref = getcollectionref();
+    final data = await collectionref.where(
+        "buildingNumber", isEqualTo: buildingnumber).where(
+        "apartmentNumber", isEqualTo: apartmentnumber).get();
+
+    return data.docs.isNotEmpty;
+  }
+
+  static Future<bool> updatefcmtoken(String userid, String fcmtoken) async
+  {
+    try {
+      final collectionref = getcollectionref();
+      final docRef = collectionref.doc(userid);
+      await docRef.update({"fcmtoken": fcmtoken});
+
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
 }

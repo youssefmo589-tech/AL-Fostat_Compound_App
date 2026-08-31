@@ -23,7 +23,8 @@ class _ProfileState extends State<Profile> {
   {
     final uid = FirebaseAuth.instance.currentUser!.uid;
     final user = await FireStoreCloudServiceUser.getuser(uid);
-    return user;
+
+    return user!;
   }
 
   UserModel ? user;

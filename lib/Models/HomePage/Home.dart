@@ -25,11 +25,11 @@ class _HomeState extends State<Home> {
       imagedark: Strings.AchievementBlack,
       title: Strings.AchievementTitle,
     ),
-    CategoryModel(
-      imagelight: Strings.MonthlyLight,
-      imagedark: Strings.MonthlyBlack,
-      title: Strings.MonthlyTitle,
-    ),
+    // CategoryModel(
+    //   imagelight: Strings.MonthlyLight,
+    //   imagedark: Strings.MonthlyBlack,
+    //   title: Strings.MonthlyTitle,
+    // ),
     CategoryModel(
       imagelight: Strings.complaintimagewhite,
       imagedark: Strings.complaintimageblack,
@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
   Future<UserModel> loaduser() async {
     final uid = FirebaseAuth.instance.currentUser!.uid;
     final user = await FireStoreCloudServiceUser.getuser(uid);
-    return user;
+    return user!;
   }
 
   UserModel? user;
@@ -82,7 +82,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       Text(
-                        user?.name ?? "Loading",
+                        user?.name ?? "Loading...",
                         style: theme.titleMedium?.copyWith(
                           color: provider.isDark()
                               ? AppColors.white
@@ -150,13 +150,13 @@ class _HomeState extends State<Home> {
                           AppRouteName.AchievementsPage,
                         );
                       }
+                      // if (index == 1) {
+                      //   Navigator.pushNamed(
+                      //     context,
+                      //     AppRouteName.Subscriptionpage,
+                      //   );
+                      // }
                       if (index == 1) {
-                        Navigator.pushNamed(
-                          context,
-                          AppRouteName.Subscriptionpage,
-                        );
-                      }
-                      if (index == 2) {
                         Navigator.pushNamed(
                           context,
                           AppRouteName.ComplaintPage,
