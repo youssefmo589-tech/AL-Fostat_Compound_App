@@ -34,7 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Future.delayed(Duration(seconds: 4), () {
         Navigator.pushNamedAndRemoveUntil(
           context,
-          AppRouteName.OnBoardingPage,
+          AppRouteName.letsStart,
           (route) => false,
         ); ////// layouttttttttt
       });

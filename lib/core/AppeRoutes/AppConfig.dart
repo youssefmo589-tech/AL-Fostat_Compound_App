@@ -11,6 +11,7 @@ import '../../Models/Login/ForgetPasswordPage/ForgetPasswordPage.dart';
 import '../../Models/Login/LoginPage/LoginPage.dart';
 import '../../Models/Login/SignUpPage/SignupPage.dart';
 import '../../Models/Onboarding/OnBoardingPages.dart';
+import '../../Models/Onboarding/letsStart.dart';
 import '../../Models/SubscriptionPage/SubscriptionPage.dart';
 import '../../Models/layoutView/layoutView.dart';
 import '../../Models/splashScreen/splashScreen.dart';
@@ -62,6 +63,9 @@ class AppConfig {
 
       case AppRouteName.OnBoardingPage:
         return MaterialPageRoute(builder: (context) => OnBoardingPage());
+
+      case AppRouteName.letsStart:
+        return MaterialPageRoute(builder: (context) => letsStart());
 
       // case AppRouteName.VerifyMyEmail:
       //   return MaterialPageRoute(builder: (context) => VerifyMyEmail());

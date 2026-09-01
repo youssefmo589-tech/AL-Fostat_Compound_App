@@ -51,8 +51,11 @@ class $AssetsIconsGen {
   SvgGenImage get moonSvgrepoCom =>
       const SvgGenImage('assets/icons/moon-svgrepo-com.svg');
 
+  /// File path: assets/icons/moon.svg
+  SvgGenImage get moon => const SvgGenImage('assets/icons/moon.svg');
+
   /// List of all assets
-  List<SvgGenImage> get values => [googleimage, moonSvgrepoCom];
+  List<SvgGenImage> get values => [googleimage, moonSvgrepoCom, moon];
 }
 
 class $AssetsImagesGen {
@@ -129,6 +132,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/google.png
   AssetGenImage get google => const AssetGenImage('assets/images/google.png');
 
+  /// File path: assets/images/letsStart.png
+  AssetGenImage get letsStart =>
+      const AssetGenImage('assets/images/letsStart.png');
+
   /// File path: assets/images/onboarding page1.png
   AssetGenImage get onboardingPage1 =>
       const AssetGenImage('assets/images/onboarding page1.png');
@@ -161,6 +168,7 @@ class $AssetsImagesGen {
     fostatsplashgreen01,
     fostatsplashlightgrey01,
     google,
+    letsStart,
     onboardingPage1,
     onboardingPage2,
     onboardingpage3,

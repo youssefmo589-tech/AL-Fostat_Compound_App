@@ -27,5 +27,7 @@ class AppRouteName {
 
   static const String OnBoardingPage = '/OnBoardingPage';
 
+  static const String letsStart = '/letsStart';
+
   // static const String VerifyMyEmail = '/VerifyMyEmail';
 }
