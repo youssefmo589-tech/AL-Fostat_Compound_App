@@ -8,6 +8,7 @@ import '../../../Widgets/CustomeButton.dart';
 import '../../../Widgets/CustomeTextField.dart';
 import '../../../core/AppTheme/AppColors.dart';
 import '../../../core/gen/assets.gen.dart';
+import '../../../core/l10n/app_localizations.dart';
 
 class ForgetPasswordPage extends StatefulWidget {
   const ForgetPasswordPage({Key? key}) : super(key: key);
@@ -20,6 +21,8 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
 
   TextEditingController controller = TextEditingController();
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
     return Scaffold(
@@ -93,7 +96,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                       }
                     }
                   },
-                  child: CustomeButton(title: "Reset password")
+                  child: CustomeButton(title: locale!.resetPassword)
 
               ),
             ],

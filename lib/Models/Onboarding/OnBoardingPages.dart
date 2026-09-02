@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/AppeRoutes/AppRouteName.dart';
+import '../../core/l10n/app_localizations.dart';
 import 'SharedprefService.dart';
 
 class OnBoardingPage extends StatefulWidget {
@@ -41,6 +42,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   ];
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
 
@@ -91,7 +93,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     );
                   },
                   child: Text(
-                    "Skip",
+                    locale!.skip,
                     style: theme.titleLarge?.copyWith(
                       fontSize: 14,
                       color: provider.isDark()
@@ -200,8 +202,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 }
               },
               child: _selectedindex == pages.length - 1
-                  ? CustomeButton(title: "Finish")
-                  : CustomeButton(title: "Next"),
+                  ? CustomeButton(title: locale.finish)
+                  : CustomeButton(title: locale.next),
             ),
           ),
         ],

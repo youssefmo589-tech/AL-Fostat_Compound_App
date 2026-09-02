@@ -15,6 +15,7 @@ import '../../../Widgets/CustomeTextField.dart';
 import '../../../core/AppTheme/AppColors.dart';
 import '../../../core/AppeRoutes/AppRouteName.dart';
 import '../../../core/gen/assets.gen.dart';
+import '../../../core/l10n/app_localizations.dart';
 import '../../../core/provider/SettingProvider.dart';
 
 class SignupPage extends StatefulWidget {
@@ -50,6 +51,8 @@ class _SignupPageState extends State<SignupPage> {
   bool ishiddenconfirm = false;
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     final isgoogleaccount =
         ModalRoute
             .of(context)
@@ -105,7 +108,7 @@ class _SignupPageState extends State<SignupPage> {
 
                         children: [
                           Text(
-                            "Create your account",
+                            locale!.createYourAccount,
                             style: theme.titleLarge?.copyWith(
                               color: provider.isDark()
                                   ? AppColors.green
@@ -118,7 +121,7 @@ class _SignupPageState extends State<SignupPage> {
                           isgoogleaccount == false ? Column(
                             children: [
                               CustomeTextField(
-                                hinttxt: "Enter your name",
+                                hinttxt: locale.enterYourName,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return "please , enter your name";
@@ -135,7 +138,7 @@ class _SignupPageState extends State<SignupPage> {
                               ),
                               SizedBox(height: 16),
                               CustomeTextField(
-                                hinttxt: "Enter your email",
+                                hinttxt: locale.enterYourEmail,
                                 validator: (value) {
                                   RegExp reg = RegExp(
                                     r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
@@ -158,7 +161,7 @@ class _SignupPageState extends State<SignupPage> {
                               SizedBox(height: 16),
 
                               CustomeTextField(
-                                hinttxt: "Enter your password",
+                                hinttxt: locale.enterYourPassword,
                                 obscureText: ishidden,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -208,7 +211,7 @@ class _SignupPageState extends State<SignupPage> {
                               SizedBox(height: 16),
 
                               CustomeTextField(
-                                hinttxt: "confirm your password",
+                                hinttxt: locale.confirmYourPassword,
                                 obscureText: ishiddenconfirm,
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -258,7 +261,7 @@ class _SignupPageState extends State<SignupPage> {
 
                           isgoogleaccount ? SizedBox() : SizedBox(height: 16),
                           CustomeTextField(
-                            hinttxt: "Enter your Phone Number",
+                            hinttxt: locale.enterYourPhoneNumber,
                             validator: (value) {
                               RegExp reg = RegExp(
                                 r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$',
@@ -284,21 +287,21 @@ class _SignupPageState extends State<SignupPage> {
                           SizedBox(height: 16),
 
                           CustomeDropdownWidget(
-                            hinttxt: 'Owner or Tenant',
-                            items: ["Owner", "Tenant"],
+                            hinttxt: locale.ownerOrTenant,
+                            items: [locale.owner, locale.tenant],
                             onChanged: onchangedownerortenant,
                           ),
                           SizedBox(height: 16),
 
                           CustomeDropdownWidget(
-                            hinttxt: 'Choose BuildingNumber',
+                            hinttxt: locale.chooseBuildingNumber,
                             items: ['1', '2', '3', '4', '5', '6'],
                             onChanged: onchangedBuildingNumber,
                           ),
                           SizedBox(height: 16),
 
                           CustomeDropdownWidget(
-                            hinttxt: 'Choose ApartmentNumber',
+                            hinttxt: locale.chooseApartmentNumber,
                             items: [
                               '1',
                               '2',

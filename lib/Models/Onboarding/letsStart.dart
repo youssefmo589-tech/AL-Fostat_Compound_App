@@ -1,4 +1,5 @@
 import 'package:alfostat/Widgets/CustomeButton.dart';
+import 'package:alfostat/core/l10n/app_localizations.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class _letsStartState extends State<letsStart> {
 
   Widget build(BuildContext context) {
     final provider = Provider.of<SettingProvider>(context);
+    final locale = AppLocalizations.of(context);
 
     final theme = Theme
         .of(context)
@@ -48,7 +50,8 @@ class _letsStartState extends State<letsStart> {
           children: [
             Assets.images.letsStart.image(),
             SizedBox(height: 24,),
-            Text("Welcome to Your Community", style: theme.titleLarge?.copyWith(
+            Text(
+              locale!.welcomeToYourCommunity, style: theme.titleLarge?.copyWith(
                 fontSize: 20,
                 color: provider.isDark() ? AppColors.white : Colors.black),),
             SizedBox(height: 8,),
@@ -65,7 +68,7 @@ class _letsStartState extends State<letsStart> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Language", style: theme.titleMedium?.copyWith(
+                Text(locale.language, style: theme.titleMedium?.copyWith(
                     fontSize: 18,
                     color: provider.isDark() ? AppColors.green : AppColors
                         .darkgreen),),
@@ -75,6 +78,7 @@ class _letsStartState extends State<letsStart> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
+                          provider.changedlan(Locale("en"));
                           isen = true;
                         });
                       },
@@ -95,10 +99,9 @@ class _letsStartState extends State<letsStart> {
 
 
                         ),
-                        // child: Icon(Icons.wb_sunny_outlined , size: 24 , color:  issun ?provider.isDark() ?  AppColors.green : AppColors.darkgreen : provider.isDark()? Colors.white : AppColors.darkgreen ,),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("English", style: theme.titleSmall
+                          child: Text(locale.english, style: theme.titleSmall
                               ?.copyWith(fontSize: 14,
                             color: isen ? provider.isDark()
                                 ? AppColors.black
@@ -112,6 +115,7 @@ class _letsStartState extends State<letsStart> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
+                          provider.changedlan(Locale("ar"));
                           isen = false;
                         });
                       },
@@ -132,10 +136,9 @@ class _letsStartState extends State<letsStart> {
 
 
                         ),
-                        // child: Icon(Icons.wb_sunny_outlined , size: 24 , color:  issun ?provider.isDark() ?  AppColors.green : AppColors.darkgreen : provider.isDark()? Colors.white : AppColors.darkgreen ,),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("Arabic", style: theme.titleSmall
+                          child: Text(locale.arabic, style: theme.titleSmall
                               ?.copyWith(fontSize: 14,
                             color: isen == false ? provider.isDark() ? AppColors
                                 .black : AppColors.white : provider.isDark()
@@ -156,7 +159,8 @@ class _letsStartState extends State<letsStart> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Theme", style: theme.titleMedium?.copyWith(fontSize: 18,
+                Text(
+                  locale.theme, style: theme.titleMedium?.copyWith(fontSize: 18,
                     color: provider.isDark() ? AppColors.green : AppColors
                         .darkgreen),),
                 Row(
@@ -226,7 +230,6 @@ class _letsStartState extends State<letsStart> {
 
 
                           ),
-                          // child: Icon(Icons.wb_sunny_outlined , size: 24 , color:  issun ?provider.isDark() ?  AppColors.green : AppColors.darkgreen : provider.isDark()? Colors.white : AppColors.darkgreen ,),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Assets.icons.moon.svg(height: 24, width: 24,
@@ -256,7 +259,7 @@ class _letsStartState extends State<letsStart> {
                   Navigator.pushNamedAndRemoveUntil(
                       context, AppRouteName.OnBoardingPage, (route) => false);
                 },
-                child: CustomeButton(title: "Lets Start"))
+                child: CustomeButton(title: locale.letsStart))
 
 
           ],

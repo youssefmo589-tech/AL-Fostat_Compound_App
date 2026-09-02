@@ -1,4 +1,5 @@
 import 'package:alfostat/core/AppTheme/AppThemeManager.dart';
+import 'package:alfostat/core/l10n/app_localizations.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:alfostat/firebase_options.dart';
 import 'package:bot_toast/bot_toast.dart';
@@ -43,9 +44,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<SettingProvider>(context);
     return MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       builder: EasyLoading.init(builder: BotToastInit()),
       debugShowCheckedModeBanner: false,
       initialRoute: AppRouteName.initial,
+      locale: provider.currentLocale,
       onGenerateRoute: AppConfig.onGenerateRoute,
       theme: AppThemeManager.lightheme,
       darkTheme: AppThemeManager.darktheme,

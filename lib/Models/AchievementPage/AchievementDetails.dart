@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/Strings/Strings.dart';
+import '../../core/l10n/app_localizations.dart';
 
 class AchievementDetails extends StatelessWidget {
   AchievementDetails({super.key});
@@ -17,6 +18,8 @@ class AchievementDetails extends StatelessWidget {
   final String _userid = FirebaseAuth.instance.currentUser!.uid;
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     AchievementDataModel achievement =
         ModalRoute.of(context)?.settings.arguments as AchievementDataModel;
     final provider = Provider.of<SettingProvider>(context);
@@ -35,7 +38,7 @@ class AchievementDetails extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Achievement Details",
+          locale!.achievementDetails,
           style: theme.titleMedium?.copyWith(
             fontSize: 18,
             color: provider.isDark() ? AppColors.green : Colors.black,
@@ -145,7 +148,7 @@ class AchievementDetails extends StatelessWidget {
               ),
 
               Text(
-                "Description",
+                locale.description,
                 style: theme.titleMedium?.copyWith(
                   color: provider.isDark() ? AppColors.lighgrey : Colors.black,
                   fontSize: 18,
@@ -177,7 +180,7 @@ class AchievementDetails extends StatelessWidget {
                 ),
               ),
               Text(
-                "Author",
+                locale.author,
                 style: theme.titleMedium?.copyWith(
                   color: provider.isDark() ? AppColors.lighgrey : Colors.black,
                   fontSize: 18,

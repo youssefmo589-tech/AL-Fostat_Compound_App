@@ -7,6 +7,7 @@ import '../../Widgets/TabBarItem.dart';
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/Classes/UserModel/UserModel.dart';
 import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
+import '../../core/l10n/app_localizations.dart';
 
 class Population extends StatefulWidget {
   const Population({super.key});
@@ -52,6 +53,8 @@ class _PopulationState extends State<Population> {
   }
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     final theme = Theme.of(context).textTheme;
     final provider = Provider.of<SettingProvider>(context);
     return Scaffold(
@@ -84,7 +87,7 @@ class _PopulationState extends State<Population> {
                   fillColor: provider.isDark()
                       ? AppColors.black
                       : AppColors.white,
-                  hintText: "Search for member",
+                  hintText: locale!.searchForMember,
                   hintStyle: theme.titleSmall?.copyWith(
                     color: provider.isDark()
                         ? AppColors.lighgrey

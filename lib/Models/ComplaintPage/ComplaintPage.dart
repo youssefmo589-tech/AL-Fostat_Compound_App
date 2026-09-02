@@ -10,6 +10,7 @@ import 'package:skeletonizer/skeletonizer.dart';
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/Strings/Strings.dart';
 import '../../core/gen/assets.gen.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../../core/provider/SettingProvider.dart';
 import 'ComplaintDetails.dart';
 
@@ -21,6 +22,8 @@ class ComplaintPage extends StatefulWidget {
 
 class _ComplaintsPageState extends State<ComplaintPage> {
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme
         .of(context)
@@ -91,7 +94,7 @@ class _ComplaintsPageState extends State<ComplaintPage> {
                           image: provider.isDark() ? complaints[index]
                               .image ?? Strings.complaintpagelight :
                           complaints[index].image ??
-                              Strings.complaintpagelight,
+                              Strings.complaintpagedark,
                           title: complaints[index].title),
                     );
                   },

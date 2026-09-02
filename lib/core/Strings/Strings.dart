@@ -6,11 +6,11 @@ class Strings {
   static const String MonthlyLight = "assets/images/MonthluLight.png";
   static const String MonthlyBlack = "assets/images/MonthlyBlack.png";
 
-  static const String AchievementTitle = "Follow the latest developments.";
+  static const String AchievementTitle = "Latest Updates";
 
   static const String MonthlyTitle = "Your Contributes.";
 
-  static const String ComplaintTitle = "Complaint.";
+  static const String ComplaintTitle = "Complaints";
 
   static const String complaintimageblack = "assets/images/complaint black.png";
 
@@ -26,4 +26,7 @@ class Strings {
 
   static const String complaintpagelight =
       "assets/images/complaintpagelight.png";
+
+  static const String complaintpagedark =
+      "assets/images/complaintdarkgreen.png";
 }

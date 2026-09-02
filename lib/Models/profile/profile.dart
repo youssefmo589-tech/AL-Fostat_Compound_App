@@ -9,6 +9,7 @@ import '../../core/AppTheme/AppColors.dart';
 import '../../core/AppeRoutes/AppRouteName.dart';
 import '../../core/Classes/UserModel/UserModel.dart';
 import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../Onboarding/SharedprefService.dart';
 import 'SettingOptions.dart';
 
@@ -44,6 +45,8 @@ class _ProfileState extends State<Profile> {
   }
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     final theme = Theme.of(context).textTheme;
     final provider = Provider.of<SettingProvider>(context);
     return Scaffold(
@@ -64,7 +67,7 @@ class _ProfileState extends State<Profile> {
                 ProfileCard(
                   title: "PhoneNumber :  ${user?.phone ?? "phone..."}",),
                 ProfileCard(
-                  title: "BuildinNumber :  ${user?.buildingNumber ?? "..."}",),
+                  title: "BuildingNumber :  ${user?.buildingNumber ?? "..."}",),
                 ProfileCard(
                   title: "apartmentNumber :  ${user?.apartmentNumber ??
                       "..."}",),
@@ -76,7 +79,7 @@ class _ProfileState extends State<Profile> {
               spacing: 16,
               children: [
                 SettingOptions(
-                  Optionname: "Dark Mode",
+                  Optionname: locale!.darkMode,
                   optionicon: FlutterSwitch(
                     width: 60.0,
                     toggleSize: 28.0,
@@ -100,13 +103,18 @@ class _ProfileState extends State<Profile> {
                     },
                   ),
                 ),
-                SettingOptions(
-                  Optionname: "Language",
-                  optionicon: Icon(
-                    Icons.arrow_forward_ios_outlined,
-                    color: provider.isDark()
-                        ? AppColors.green
-                        : AppColors.darkgreen,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, AppRouteName.ChangeLanguage);
+                  },
+                  child: SettingOptions(
+                    Optionname: locale.language,
+                    optionicon: Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      color: provider.isDark()
+                          ? AppColors.green
+                          : AppColors.darkgreen,
+                    ),
                   ),
                 ),
                 GestureDetector(
@@ -116,7 +124,7 @@ class _ProfileState extends State<Profile> {
                         context, AppRouteName.LoginPage, (route) => false);
                   },
                   child: SettingOptions(
-                    Optionname: "Logout",
+                    Optionname: locale.logout,
                     optionicon: Icon(Icons.logout, color: Colors.red),
                   ),
                 ),

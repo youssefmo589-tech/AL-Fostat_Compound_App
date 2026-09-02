@@ -10,6 +10,7 @@ import '../../core/AppeRoutes/AppRouteName.dart';
 import '../../core/Classes/UserModel/UserModel.dart';
 import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import '../../core/gen/assets.gen.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../Onboarding/SharedprefService.dart';
 import 'CategoryModel.dart';
 
@@ -59,6 +60,8 @@ class _HomeState extends State<Home> {
   }
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     final theme = Theme.of(context).textTheme;
     final provider = Provider.of<SettingProvider>(context);
     return SafeArea(
@@ -75,7 +78,7 @@ class _HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Welcome Back ✨",
+                        "${locale!.welcomeBack}✨",
                         style: theme.titleSmall?.copyWith(
                           color: provider.isDark()
                               ? AppColors.green
@@ -133,7 +136,7 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(height: 20),
               Text(
-                "Categories",
+                locale.categories,
                 style: theme.titleLarge?.copyWith(
                   color: provider.isDark()
                       ? AppColors.green

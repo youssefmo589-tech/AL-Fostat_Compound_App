@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../core/AppTheme/AppColors.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../HomePage/Home.dart';
 import '../Population/Population.dart';
 import '../profile/profile.dart';
@@ -19,6 +20,8 @@ class _LayoutViewState extends State<LayoutView> {
   List<Widget> pages = [Home(), Population(), Profile()];
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
     return SafeArea(
@@ -60,7 +63,7 @@ class _LayoutViewState extends State<LayoutView> {
                     ? AppColors.lighgrey
                     : AppColors.darkgrey,
               ),
-              label: "Home",
+              label: locale!.homeNav,
               activeIcon: Icon(
                 Icons.home_filled,
                 size: 24,
@@ -78,7 +81,7 @@ class _LayoutViewState extends State<LayoutView> {
                     ? AppColors.lighgrey
                     : AppColors.darkgrey,
               ),
-              label: "Population",
+              label: locale!.populationNav,
               activeIcon: Icon(
                 Icons.people_outline,
                 size: 24,
@@ -96,7 +99,7 @@ class _LayoutViewState extends State<LayoutView> {
                     ? AppColors.lighgrey
                     : AppColors.darkgrey,
               ),
-              label: "Profile",
+              label: locale!.profileNav,
               activeIcon: Icon(
                 Icons.person_outline,
                 size: 24,

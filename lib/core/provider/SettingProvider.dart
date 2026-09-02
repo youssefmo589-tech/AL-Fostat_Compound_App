@@ -9,4 +9,11 @@ class SettingProvider extends ChangeNotifier {
   }
 
   bool isDark() => currentTheme == ThemeMode.dark ? true : false;
+
+  Locale currentLocale = Locale("en");
+
+  void changedlan(Locale newLocale) {
+    currentLocale = newLocale;
+    notifyListeners();
+  }
 }

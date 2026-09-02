@@ -10,6 +10,7 @@ import 'package:provider/provider.dart';
 import '../../Widgets/CustomeTextField.dart';
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/Strings/Strings.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../../core/provider/SettingProvider.dart';
 import '../HomePage/secionContainer.dart';
 
@@ -36,6 +37,8 @@ class _EditComplaintState extends State<EditComplaint> {
   }
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
     return Scaffold(
@@ -77,14 +80,15 @@ class _EditComplaintState extends State<EditComplaint> {
                 spacing: 8,
                 children: [
                   Text(
-                    "Title",
+                    locale!.title,
                     style: theme.titleMedium?.copyWith(
                       fontSize: 16,
                       color: provider.isDark() ? AppColors.green : Colors.black,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  CustomeTextField(hinttxt: "Enter Title", controller: title),
+                  CustomeTextField(
+                      hinttxt: locale!.enterTitle, controller: title),
                 ],
               ),
               Column(
@@ -93,7 +97,7 @@ class _EditComplaintState extends State<EditComplaint> {
                 spacing: 8,
                 children: [
                   Text(
-                    "Description",
+                    locale.description,
                     style: theme.titleMedium?.copyWith(
                       fontSize: 16,
                       color: provider.isDark() ? AppColors.green : Colors.black,
@@ -101,7 +105,7 @@ class _EditComplaintState extends State<EditComplaint> {
                     ),
                   ),
                   CustomeTextField(
-                    hinttxt: "Complaint Description....",
+                    hinttxt: locale.complaintDescription,
                     controller: descrption,
                     maxlines: 5,
                   ),
@@ -121,7 +125,7 @@ class _EditComplaintState extends State<EditComplaint> {
                             : AppColors.darkgreen,
                       ),
                       Text(
-                        "Complaint Date",
+                        locale.complaintDate,
                         style: theme.titleMedium?.copyWith(
                           fontSize: 16,
                           color: provider.isDark()
@@ -138,7 +142,7 @@ class _EditComplaintState extends State<EditComplaint> {
                     child: Text(
                       _selectedDate != null
                           ? DateFormat("yyyy-MM-dd").format(_selectedDate!)
-                          : "Choose date",
+                          : locale.chooseDate,
                       style: theme.titleSmall?.copyWith(
                         color: provider.isDark()
                             ? AppColors.green

@@ -15,6 +15,7 @@ import '../../../core/AppTheme/AppColors.dart';
 import '../../../core/FirebaseServices/FirebaseAuth/FirebaseAuth.dart';
 import '../../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import '../../../core/gen/assets.gen.dart';
+import '../../../core/l10n/app_localizations.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -33,6 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   bool ishidden = false;
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
     return Scaffold(
@@ -74,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
 
                   children: [
                     Text(
-                      "Login to your account",
+                      locale!.loginToYourAccount,
                       style: theme.titleLarge?.copyWith(
                         color: provider.isDark()
                             ? AppColors.green
@@ -164,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                           );
                         },
                         child: Text(
-                          "Forget Password?",
+                          locale.forgetPassword,
                           style: theme.titleLarge?.copyWith(
                             decoration: TextDecoration.underline,
                             decorationColor: provider.isDark()
@@ -213,7 +215,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         }
                       },
-                      child: CustomeButton(title: "Login"),
+                      child: CustomeButton(title: locale.login),
                     ),
                     SizedBox(height: 40),
                     Center(
@@ -221,7 +223,7 @@ class _LoginPageState extends State<LoginPage> {
                         TextSpan(
                           children: [
                             TextSpan(
-                              text: "Don’t have an account ?",
+                              text: locale.dontHaveAccount,
                               style: theme.titleSmall?.copyWith(
                                 color: provider.isDark()
                                     ? AppColors.lighgrey
@@ -230,7 +232,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             TextSpan(
-                              text: "Signup",
+                              text: locale.signup,
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
                                   Navigator.pushNamed(
@@ -346,7 +348,7 @@ class _LoginPageState extends State<LoginPage> {
                               SizedBox(width: 16),
 
                               Text(
-                                "Login with Google",
+                                locale.loginWithGoogle,
                                 style: theme.titleMedium?.copyWith(
                                   fontSize: 18,
                                   color: provider.isDark()

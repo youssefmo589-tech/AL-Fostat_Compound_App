@@ -29,5 +29,7 @@ class AppRouteName {
 
   static const String letsStart = '/letsStart';
 
+  static const String ChangeLanguage = '/ChangeLanguage';
+
   // static const String VerifyMyEmail = '/VerifyMyEmail';
 }

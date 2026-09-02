@@ -14,6 +14,7 @@ import '../../core/AppTheme/AppColors.dart';
 import '../../core/Classes/UserModel/UserModel.dart';
 import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import '../../core/Strings/Strings.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../../core/provider/SettingProvider.dart';
 import '../HomePage/secionContainer.dart';
 
@@ -53,6 +54,7 @@ class _AddAchievementState extends State<AddAchievement> {
   TextEditingController descrption = TextEditingController();
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
     return Scaffold(
@@ -68,7 +70,7 @@ class _AddAchievementState extends State<AddAchievement> {
           ),
         ),
         title: Text(
-          "Add Achievement",
+          locale!.addAchievement,
           style: theme.titleMedium?.copyWith(
             fontSize: 18,
             color: provider.isDark() ? AppColors.green : Colors.black,
@@ -94,14 +96,15 @@ class _AddAchievementState extends State<AddAchievement> {
                 spacing: 8,
                 children: [
                   Text(
-                    "Title",
+                    locale.title,
                     style: theme.titleMedium?.copyWith(
                       fontSize: 16,
                       color: provider.isDark() ? AppColors.green : Colors.black,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  CustomeTextField(hinttxt: "Enter Title", controller: title),
+                  CustomeTextField(
+                      hinttxt: locale.enterTitle, controller: title),
                 ],
               ),
               Column(
@@ -110,7 +113,7 @@ class _AddAchievementState extends State<AddAchievement> {
                 spacing: 8,
                 children: [
                   Text(
-                    "Description",
+                    locale.description,
                     style: theme.titleMedium?.copyWith(
                       fontSize: 16,
                       color: provider.isDark() ? AppColors.green : Colors.black,
@@ -118,7 +121,7 @@ class _AddAchievementState extends State<AddAchievement> {
                     ),
                   ),
                   CustomeTextField(
-                    hinttxt: "Achievement Description....",
+                    hinttxt: locale.achievementDescription,
                     controller: descrption,
                     maxlines: 5,
                   ),
@@ -133,7 +136,7 @@ class _AddAchievementState extends State<AddAchievement> {
                       Icon(Icons.calendar_month_outlined, size: 24,
                         color: provider.isDark() ? AppColors.green : AppColors
                             .darkgreen,),
-                      Text("Achievement Date",
+                      Text(locale.achievementDate,
                         style: theme.titleMedium?.copyWith(fontSize: 16,
                             color: provider.isDark()
                                 ? AppColors.lighgrey
@@ -146,7 +149,7 @@ class _AddAchievementState extends State<AddAchievement> {
                       },
                       child: Text(
                         _selectedDate != null ? DateFormat("yyyy-MM-dd").format(
-                            _selectedDate!) : "Choose date",
+                            _selectedDate!) : locale.chooseDate,
                         style: theme.titleSmall?.copyWith(
                             color: provider.isDark()
                                 ? AppColors.green

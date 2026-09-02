@@ -14,6 +14,7 @@ import '../../Models/Onboarding/OnBoardingPages.dart';
 import '../../Models/Onboarding/letsStart.dart';
 import '../../Models/SubscriptionPage/SubscriptionPage.dart';
 import '../../Models/layoutView/layoutView.dart';
+import '../../Models/profile/changeLan.dart';
 import '../../Models/splashScreen/splashScreen.dart';
 import 'AppRouteName.dart';
 
@@ -66,6 +67,9 @@ class AppConfig {
 
       case AppRouteName.letsStart:
         return MaterialPageRoute(builder: (context) => letsStart());
+
+      case AppRouteName.ChangeLanguage:
+        return MaterialPageRoute(builder: (context) => ChangeLanguage());
 
       // case AppRouteName.VerifyMyEmail:
       //   return MaterialPageRoute(builder: (context) => VerifyMyEmail());

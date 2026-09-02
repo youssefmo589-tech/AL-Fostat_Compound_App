@@ -141,6 +141,10 @@ class $AssetsImagesGen {
   AssetGenImage get complaintBlack =>
       const AssetGenImage('assets/images/complaint black.png');
 
+  /// File path: assets/images/complaintdarkgreen.png
+  AssetGenImage get complaintdarkgreen =>
+      const AssetGenImage('assets/images/complaintdarkgreen.png');
+
   /// File path: assets/images/complaintpagelight.png
   AssetGenImage get complaintpagelight =>
       const AssetGenImage('assets/images/complaintpagelight.png');
@@ -215,6 +219,7 @@ class $AssetsImagesGen {
     achievementphoto,
     changepass,
     complaintBlack,
+    complaintdarkgreen,
     complaintpagelight,
     complaintwhite,
     fostatpageLogoBlack,

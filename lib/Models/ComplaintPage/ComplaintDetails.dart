@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/Strings/Strings.dart';
+import '../../core/l10n/app_localizations.dart';
 import 'EditComplaint.dart';
 
 class ComplaintDetails extends StatelessWidget {
@@ -17,6 +18,8 @@ class ComplaintDetails extends StatelessWidget {
   final String _userid = FirebaseAuth.instance.currentUser!.uid;
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
+
     ComplaintDataModel complaint =
         ModalRoute.of(context)?.settings.arguments as ComplaintDataModel;
     final provider = Provider.of<SettingProvider>(context);
@@ -35,7 +38,7 @@ class ComplaintDetails extends StatelessWidget {
           ),
         ),
         title: Text(
-          "Complaint Details",
+          locale!.complaintDetails,
           style: theme.titleMedium?.copyWith(
             fontSize: 18,
             color: provider.isDark() ? AppColors.green : Colors.black,
@@ -90,7 +93,7 @@ class ComplaintDetails extends StatelessWidget {
                     complaint.image ??
                     (provider.isDark()
                         ? Strings.complaintpagelight
-                        : Strings.complaintpagelight),
+                        : Strings.complaintpagedark),
               ),
               Text(
                 complaint.title,
@@ -156,7 +159,7 @@ class ComplaintDetails extends StatelessWidget {
               ),
 
               Text(
-                "Description",
+                locale.description,
                 style: theme.titleMedium?.copyWith(
                   color: provider.isDark() ? AppColors.lighgrey : Colors.black,
                   fontSize: 18,
@@ -191,7 +194,7 @@ class ComplaintDetails extends StatelessWidget {
                 ),
               ),
               Text(
-                "Author",
+                locale.author,
                 style: theme.titleMedium?.copyWith(
                   color: provider.isDark() ? AppColors.lighgrey : Colors.black,
                   fontSize: 18,
