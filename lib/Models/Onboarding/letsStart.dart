@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/AppeRoutes/AppRouteName.dart';
 import '../../core/gen/assets.gen.dart';
+import 'SharedprefService.dart';
 
 class letsStart extends StatefulWidget {
   const letsStart({super.key});
@@ -27,13 +28,24 @@ class _letsStartState extends State<letsStart> {
         .textTheme;
 
     return Scaffold(
+      appBar: AppBar(
+
+        title: Padding(
+          padding: const EdgeInsets.all(80),
+          child: provider.isDark()
+              ? Assets.icons.logoTextblack01.svg(
+              colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn))
+              : Assets.icons.logoTextdarkgreen01.svg(
+              colorFilter: ColorFilter.mode(
+                  AppColors.darkgreen, BlendMode.srcIn)),
+        ),
+      ),
 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 24,),
             Assets.images.letsStart.image(),
             SizedBox(height: 24,),
             Text("Welcome to Your Community", style: theme.titleLarge?.copyWith(
@@ -153,6 +165,7 @@ class _letsStartState extends State<letsStart> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
+                          SharePrefService.settheme("light");
                           provider.changeTheme(ThemeMode.light);
 
                           issun = true;
@@ -190,6 +203,7 @@ class _letsStartState extends State<letsStart> {
                     GestureDetector(
                       onTap: () {
                         setState(() {
+                          SharePrefService.settheme("dark");
                           provider.changeTheme(ThemeMode.dark);
                           issun = false;
                         });

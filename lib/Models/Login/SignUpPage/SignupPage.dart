@@ -83,11 +83,15 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                     child: Center(
                       child: SizedBox(
-                        width: 220,
-                        height: 50,
-                        child: provider.isDark()
-                            ? Assets.images.fostatpagelogogreen.image()
-                            : Assets.images.fostatpageLogoBlack.image(),
+                        width: 240,
+                        height: 60,
+                        child: SizedBox(
+                            child: Assets.icons.logotextlarge01.svg(
+                              colorFilter: provider.isDark()
+                                  ? ColorFilter.mode(
+                                  AppColors.lighgrey, BlendMode.srcIn)
+                                  : ColorFilter.mode(
+                                  AppColors.darkgreen, BlendMode.srcIn),)),
                       ),
                     ),
                   ),

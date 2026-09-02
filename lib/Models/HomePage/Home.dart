@@ -10,6 +10,7 @@ import '../../core/AppeRoutes/AppRouteName.dart';
 import '../../core/Classes/UserModel/UserModel.dart';
 import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import '../../core/gen/assets.gen.dart';
+import '../Onboarding/SharedprefService.dart';
 import 'CategoryModel.dart';
 
 class Home extends StatefulWidget {
@@ -99,6 +100,8 @@ class _HomeState extends State<Home> {
                       provider.isDark()
                           ? GestureDetector(
                               onTap: () {
+                                SharePrefService.settheme("light");
+
                                 provider.changeTheme(ThemeMode.light);
                               },
                               child: Assets.icons.moonSvgrepoCom.svg(
@@ -112,6 +115,8 @@ class _HomeState extends State<Home> {
                             )
                           : GestureDetector(
                               onTap: () {
+                                SharePrefService.settheme("dark");
+
                                 provider.changeTheme(ThemeMode.dark);
                               },
                               child: Icon(

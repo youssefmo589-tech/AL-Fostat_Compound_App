@@ -15,9 +15,28 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
   void initState() {
     super.initState();
-    checkOnBoarding();
+    initializeSplash();
+  }
+
+  Future<void> initializeSplash() async
+  {
+    await checktheme();
+    await checkOnBoarding();
+  }
+
+  Future<void> checktheme() async
+  {
+    final theme = await SharePrefService.gettheme();
+    final provider = Provider.of<SettingProvider>(context, listen: false);
+    if (theme == "light") {
+      provider.changeTheme(ThemeMode.light);
+    }
+    else if (theme == "dark") {
+      provider.changeTheme(ThemeMode.dark);
+    }
   }
 
   Future<void> checkOnBoarding() async {
@@ -26,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Future.delayed(Duration(seconds: 4), () {
         Navigator.pushNamedAndRemoveUntil(
           context,
-          AppRouteName.LoginPage,
+          AppRouteName.letsStart,
           (route) => false,
         );
       });
@@ -46,20 +65,19 @@ class _SplashScreenState extends State<SplashScreen> {
     final provider = Provider.of<SettingProvider>(context);
 
     return Scaffold(
-      backgroundColor: provider.isDark() ? AppColors.black : AppColors.green,
-      body: provider.isDark()
-          ? Center(
+        backgroundColor: provider.isDark() ? AppColors.black : AppColors
+            .lighgrey,
+        body:
+        Center(
               child: Padding(
                 padding: const EdgeInsets.all(45),
-                child: Assets.images.fostatsplashgreen01.image(),
+                child: Assets.icons.blackLogo01.svg(
+                    colorFilter: ColorFilter.mode(
+                        provider.isDark() ? AppColors.green : AppColors
+                            .darkgreen, BlendMode.srcIn)),
               ),
             )
-          : Center(
-              child: Padding(
-                padding: const EdgeInsets.all(45),
-                child: Assets.images.fostatsplashblack01.image(),
-              ),
-            ),
+
     );
   }
 }

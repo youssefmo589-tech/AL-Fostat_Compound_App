@@ -43,9 +43,41 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/black logo-01.svg
+  SvgGenImage get blackLogo01 =>
+      const SvgGenImage('assets/icons/black logo-01.svg');
+
+  /// File path: assets/icons/darkgreen-01.svg
+  SvgGenImage get darkgreen01 =>
+      const SvgGenImage('assets/icons/darkgreen-01.svg');
+
   /// File path: assets/icons/googleimage.svg
   SvgGenImage get googleimage =>
       const SvgGenImage('assets/icons/googleimage.svg');
+
+  /// File path: assets/icons/greenlightlogo-01.svg
+  SvgGenImage get greenlightlogo01 =>
+      const SvgGenImage('assets/icons/greenlightlogo-01.svg');
+
+  /// File path: assets/icons/lightgreylogo-01.svg
+  SvgGenImage get lightgreylogo01 =>
+      const SvgGenImage('assets/icons/lightgreylogo-01.svg');
+
+  /// File path: assets/icons/logo&textblack-01.svg
+  SvgGenImage get logoTextblack01 =>
+      const SvgGenImage('assets/icons/logo&textblack-01.svg');
+
+  /// File path: assets/icons/logo&textdarkgreen-01.svg
+  SvgGenImage get logoTextdarkgreen01 =>
+      const SvgGenImage('assets/icons/logo&textdarkgreen-01.svg');
+
+  /// File path: assets/icons/logo&textlightgrey-01.svg
+  SvgGenImage get logoTextlightgrey01 =>
+      const SvgGenImage('assets/icons/logo&textlightgrey-01.svg');
+
+  /// File path: assets/icons/logotextlarge-01.svg
+  SvgGenImage get logotextlarge01 =>
+      const SvgGenImage('assets/icons/logotextlarge-01.svg');
 
   /// File path: assets/icons/moon-svgrepo-com.svg
   SvgGenImage get moonSvgrepoCom =>
@@ -55,7 +87,19 @@ class $AssetsIconsGen {
   SvgGenImage get moon => const SvgGenImage('assets/icons/moon.svg');
 
   /// List of all assets
-  List<SvgGenImage> get values => [googleimage, moonSvgrepoCom, moon];
+  List<SvgGenImage> get values => [
+    blackLogo01,
+    darkgreen01,
+    googleimage,
+    greenlightlogo01,
+    lightgreylogo01,
+    logoTextblack01,
+    logoTextdarkgreen01,
+    logoTextlightgrey01,
+    logotextlarge01,
+    moonSvgrepoCom,
+    moon,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -136,6 +180,18 @@ class $AssetsImagesGen {
   AssetGenImage get letsStart =>
       const AssetGenImage('assets/images/letsStart.png');
 
+  /// File path: assets/images/logo launcher-01.png
+  AssetGenImage get logoLauncher01 =>
+      const AssetGenImage('assets/images/logo launcher-01.png');
+
+  /// File path: assets/images/logoapp-01.png
+  AssetGenImage get logoapp01 =>
+      const AssetGenImage('assets/images/logoapp-01.png');
+
+  /// File path: assets/images/logosplash-01.png
+  AssetGenImage get logosplash01 =>
+      const AssetGenImage('assets/images/logosplash-01.png');
+
   /// File path: assets/images/onboarding page1.png
   AssetGenImage get onboardingPage1 =>
       const AssetGenImage('assets/images/onboarding page1.png');
@@ -169,6 +225,9 @@ class $AssetsImagesGen {
     fostatsplashlightgrey01,
     google,
     letsStart,
+    logoLauncher01,
+    logoapp01,
+    logosplash01,
     onboardingPage1,
     onboardingPage2,
     onboardingpage3,

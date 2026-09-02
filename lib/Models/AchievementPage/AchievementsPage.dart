@@ -9,7 +9,6 @@ import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/Strings/Strings.dart';
-import '../../core/gen/assets.gen.dart';
 import '../../core/provider/SettingProvider.dart';
 import 'AchieveMentDataModel.dart';
 
@@ -25,24 +24,18 @@ class _AchievementsPageState extends State<AchievementsPage> {
     final theme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
+        leading: IconButton(
+          onPressed: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          icon: Icon(
             Icons.arrow_back_ios_new,
             size: 30,
             color: provider.isDark() ? AppColors.green : AppColors.darkgreen,
           ),
         ),
-        title: SizedBox(
-          width: 200,
-          height: 35,
-          child: provider.isDark()
-              ? Assets.images.fostatpagelogogreen.image()
-              : Assets.images.fostatpageLogoBlack.image(),
-        ),
-        centerTitle: true,
+
+
       ),
 
       body: Padding(

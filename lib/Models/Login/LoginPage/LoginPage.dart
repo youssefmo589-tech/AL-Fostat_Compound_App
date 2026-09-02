@@ -56,7 +56,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: SizedBox(
                   width: 240,
                   height: 60,
-                  child: Assets.images.fostatpageLogoBlack.image(),
+                  child: SizedBox(
+                      child: Assets.icons.logotextlarge01.svg(
+                        colorFilter: provider.isDark() ? ColorFilter.mode(
+                            AppColors.lighgrey, BlendMode.srcIn) : ColorFilter
+                            .mode(AppColors.darkgreen, BlendMode.srcIn),)),
                 ),
               ),
             ),
@@ -229,10 +233,10 @@ class _LoginPageState extends State<LoginPage> {
                               text: "Signup",
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  Navigator.pushNamedAndRemoveUntil(
+                                  Navigator.pushNamed(
                                     context,
                                     AppRouteName.SignupPage,
-                                    (route) => false,
+
                                   );
                                 },
                               style: theme.titleSmall?.copyWith(

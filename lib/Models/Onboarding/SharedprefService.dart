@@ -10,4 +10,19 @@ class SharePrefService {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getBool("seen") ?? false;
   }
+
+  static Future<void> settheme(String theme) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    if (theme == "light") {
+      await prefs.setString("theme", "light");
+    } else if (theme == "dark") {
+      await prefs.setString("theme", "dark");
+    }
+  }
+
+  static Future<String> gettheme() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString("theme") ?? "light";
+  }
 }

@@ -9,6 +9,7 @@ import '../../core/AppTheme/AppColors.dart';
 import '../../core/AppeRoutes/AppRouteName.dart';
 import '../../core/Classes/UserModel/UserModel.dart';
 import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
+import '../Onboarding/SharedprefService.dart';
 import 'SettingOptions.dart';
 
 class Profile extends StatefulWidget {
@@ -88,8 +89,12 @@ class _ProfileState extends State<Profile> {
                     inactiveToggleColor: AppColors.white,
                     onToggle: (bool value) {
                       if (value) {
+                        SharePrefService.settheme("dark");
+
                         provider.changeTheme(ThemeMode.dark);
                       } else {
+                        SharePrefService.settheme("light");
+
                         provider.changeTheme(ThemeMode.light);
                       }
                     },

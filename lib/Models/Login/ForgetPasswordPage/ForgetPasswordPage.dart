@@ -34,13 +34,17 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
             color: provider.isDark() ? AppColors.green : AppColors.darkgreen,
           ),
         ),
-        title: SizedBox(
-          width: 200,
-          height: 35,
+        title:
+        Padding(
+          padding: const EdgeInsets.all(80),
           child: provider.isDark()
-              ? Assets.images.fostatpagelogogreen.image()
-              : Assets.images.fostatpageLogoBlack.image(),
+              ? Assets.icons.logoTextblack01.svg(
+              colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn))
+              : Assets.icons.logoTextdarkgreen01.svg(
+              colorFilter: ColorFilter.mode(
+                  AppColors.darkgreen, BlendMode.srcIn)),
         ),
+
         centerTitle: true,
       ),
 

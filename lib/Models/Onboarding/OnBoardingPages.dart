@@ -64,9 +64,6 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 ),
               )
             : SizedBox(),
-
-        // title: Assets.images.fostatpageLogoBlack.image(),
-        // centerTitle: true,
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
