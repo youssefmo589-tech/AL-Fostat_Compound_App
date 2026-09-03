@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -210,4 +209,19 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get enterTitle => 'أدخل العنوان';
+
+  @override
+  String get editComplaint => 'تعديل الشكوى';
+
+  @override
+  String get updateComplaint => 'تحديث الشكوى';
+
+  @override
+  String get editAchievement => 'تعديل الإنجاز';
+
+  @override
+  String get updateAchievement => 'تحديث الإنجاز';
+
+  @override
+  String get achievements => 'الإنجازات';
 }

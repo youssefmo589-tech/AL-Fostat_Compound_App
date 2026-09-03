@@ -128,8 +128,6 @@ class _HomeState extends State<Home> {
                                 size: 24,
                               ),
                             ),
-
-                      ///// lannnnnnnnnnnnnn
                     ],
                   ),
                 ],
@@ -183,7 +181,6 @@ class _HomeState extends State<Home> {
                 separatorBuilder: (context, index) {
                   return SizedBox(height: 16);
                 },
-
                 itemCount: categories.length,
               ),
             ],

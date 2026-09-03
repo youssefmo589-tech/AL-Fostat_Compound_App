@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/l10n/app_localizations.dart';
 import '../../core/provider/SettingProvider.dart';
+import '../Onboarding/SharedprefService.dart';
 
 class ChangeLanguage extends StatelessWidget {
   const ChangeLanguage({super.key});
@@ -39,6 +40,7 @@ class ChangeLanguage extends StatelessWidget {
                 Bounceable(
                   onTap: () {
                     provider.changedlan(Locale("en"));
+                    SharePrefService.setlanguage("en");
                   },
                   child: Container(
                     width: double.infinity,
@@ -70,6 +72,7 @@ class ChangeLanguage extends StatelessWidget {
                 Bounceable(
                   onTap: () {
                     provider.changedlan(Locale("ar"));
+                    SharePrefService.setlanguage("ar");
                   },
                   child: Container(
                     width: double.infinity,

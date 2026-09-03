@@ -57,151 +57,156 @@ class _AddAchievementState extends State<AddAchievement> {
     final locale = AppLocalizations.of(context);
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
-    return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back_ios_new,
-            size: 30,
-            color: provider.isDark() ? AppColors.green : AppColors.darkgreen,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new,
+              size: 30,
+              color: provider.isDark() ? AppColors.green : AppColors.darkgreen,
+            ),
           ),
-        ),
-        title: Text(
-          locale!.addAchievement,
-          style: theme.titleMedium?.copyWith(
-            fontSize: 18,
-            color: provider.isDark() ? AppColors.green : Colors.black,
+          title: Text(
+            locale!.addAchievement,
+            style: theme.titleMedium?.copyWith(
+              fontSize: 18,
+              color: provider.isDark() ? AppColors.green : Colors.black,
+            ),
           ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
 
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            spacing: 16,
-            children: [
-              SectionContainer(
-                image: provider.isDark()
-                    ? Strings.AcheivementContainerdark
-                    : Strings.AcheivementContainerlight,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                spacing: 8,
-                children: [
-                  Text(
-                    locale.title,
-                    style: theme.titleMedium?.copyWith(
-                      fontSize: 16,
-                      color: provider.isDark() ? AppColors.green : Colors.black,
-                      fontWeight: FontWeight.w600,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 16,
+              children: [
+                SectionContainer(
+                  image: provider.isDark()
+                      ? Strings.AcheivementContainerdark
+                      : Strings.AcheivementContainerlight,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  spacing: 8,
+                  children: [
+                    Text(
+                      locale.title,
+                      style: theme.titleMedium?.copyWith(
+                        fontSize: 16,
+                        color: provider.isDark() ? AppColors.green : Colors
+                            .black,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  CustomeTextField(
-                      hinttxt: locale.enterTitle, controller: title),
-                ],
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                    CustomeTextField(
+                        hinttxt: locale.enterTitle, controller: title),
+                  ],
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
 
-                spacing: 8,
-                children: [
-                  Text(
-                    locale.description,
-                    style: theme.titleMedium?.copyWith(
-                      fontSize: 16,
-                      color: provider.isDark() ? AppColors.green : Colors.black,
-                      fontWeight: FontWeight.w600,
+                  spacing: 8,
+                  children: [
+                    Text(
+                      locale.description,
+                      style: theme.titleMedium?.copyWith(
+                        fontSize: 16,
+                        color: provider.isDark() ? AppColors.green : Colors
+                            .black,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
-                  ),
-                  CustomeTextField(
-                    hinttxt: locale.achievementDescription,
-                    controller: descrption,
-                    maxlines: 5,
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    spacing: 8,
-                    children: [
-                      Icon(Icons.calendar_month_outlined, size: 24,
-                        color: provider.isDark() ? AppColors.green : AppColors
-                            .darkgreen,),
-                      Text(locale.achievementDate,
-                        style: theme.titleMedium?.copyWith(fontSize: 16,
-                            color: provider.isDark()
-                                ? AppColors.lighgrey
-                                : Colors.black),),
-                    ],
-                  ),
-                  GestureDetector(
-                      onTap: () {
-                        _selectdate(context);
-                      },
-                      child: Text(
-                        _selectedDate != null ? DateFormat("yyyy-MM-dd").format(
-                            _selectedDate!) : locale.chooseDate,
-                        style: theme.titleSmall?.copyWith(
-                            color: provider.isDark()
-                                ? AppColors.green
-                                : AppColors.darkgreen,
-                            decoration: TextDecoration.underline,
-                            decorationColor: provider.isDark()
-                                ? AppColors.green
-                                : AppColors.darkgreen),)),
-                ],
-              ),
-              GestureDetector(
-                  onTap: () async {
-                    if (_selectedDate != null && title.text
-                        .trim()
-                        .isNotEmpty && descrption.text
-                        .trim()
-                        .isNotEmpty) {
-                      EasyLoading.show();
-                      final achievement = AchievementDataModel(
-                        author: user!.name,
+                    CustomeTextField(
+                      hinttxt: locale.achievementDescription,
+                      controller: descrption,
+                      maxlines: 5,
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      spacing: 8,
+                      children: [
+                        Icon(Icons.calendar_month_outlined, size: 24,
+                          color: provider.isDark() ? AppColors.green : AppColors
+                              .darkgreen,),
+                        Text(locale.achievementDate,
+                          style: theme.titleMedium?.copyWith(fontSize: 16,
+                              color: provider.isDark()
+                                  ? AppColors.lighgrey
+                                  : Colors.black),),
+                      ],
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          _selectdate(context);
+                        },
+                        child: Text(
+                          _selectedDate != null ? DateFormat("yyyy-MM-dd")
+                              .format(
+                              _selectedDate!) : locale.chooseDate,
+                          style: theme.titleSmall?.copyWith(
+                              color: provider.isDark()
+                                  ? AppColors.green
+                                  : AppColors.darkgreen,
+                              decoration: TextDecoration.underline,
+                              decorationColor: provider.isDark()
+                                  ? AppColors.green
+                                  : AppColors.darkgreen),)),
+                  ],
+                ),
+                GestureDetector(
+                    onTap: () async {
+                      if (_selectedDate != null && title.text
+                          .trim()
+                          .isNotEmpty && descrption.text
+                          .trim()
+                          .isNotEmpty) {
+                        EasyLoading.show();
+                        final achievement = AchievementDataModel(
+                          author: user!.name,
                           title: title.text.trim(),
                           description: descrption.text.trim(),
-                        date: _selectedDate,
-                        userid: FirebaseAuth.instance.currentUser!.uid,
-                      );
-                      bool isadded = await FireStoreCloudService
-                          .createAchievement(achievement);
-                      if (isadded) {
-                        await NotificationService.sendNotification(
-                          title: "New Achievement 🎉",
-                          message: "${user!
-                              .name} added a new achievement: ${achievement
-                              .title}",
+                          date: _selectedDate,
+                          userid: FirebaseAuth.instance.currentUser!.uid,
                         );
+                        bool isadded = await FireStoreCloudService
+                            .createAchievement(achievement);
+                        if (isadded) {
+                          await NotificationService.sendNotification(
+                            title: "New Achievement 🎉",
+                            message: "${user!
+                                .name} added a new achievement: ${achievement
+                                .title}",
+                          );
 
-                        EasyLoading.dismiss();
-                        AppSnackBar.success("Achievement Added Successfully");
-                        Navigator.pop(context);
+                          EasyLoading.dismiss();
+                          AppSnackBar.success("Achievement Added Successfully");
+                          Navigator.pop(context);
+                        }
+                        else {
+                          EasyLoading.dismiss();
+                          AppSnackBar.error("Something went wrong");
+                        }
                       }
                       else {
                         EasyLoading.dismiss();
-                        AppSnackBar.error("Something went wrong");
+                        AppSnackBar.error("Complete all fields");
                       }
-                    }
-                    else {
-                      EasyLoading.dismiss();
-                      AppSnackBar.error("Complete all fields");
-                    }
-                  },
-                  child: CustomeButton(title: "Add Achievement")),
+                    },
+                    child: CustomeButton(title: locale.addAchievement)),
 
-            ],
+              ],
+            ),
           ),
         ),
       ),

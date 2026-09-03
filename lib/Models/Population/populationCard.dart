@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/AppTheme/AppColors.dart';
 import '../../core/Classes/UserModel/UserModel.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../../core/provider/SettingProvider.dart';
 
 class PopulationCard extends StatelessWidget {
@@ -11,6 +12,7 @@ class PopulationCard extends StatelessWidget {
   const PopulationCard({super.key, required this.user});
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
 
@@ -31,25 +33,25 @@ class PopulationCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "${user.name}",
+              "${locale!.nameLabel} : ${user.name}",
               style: theme.titleSmall?.copyWith(
                 color: provider.isDark() ? AppColors.lighgrey : AppColors.black,
               ),
             ),
             Text(
-              user.phone,
+              "${locale.phoneNumberLabel} : ${user.phone}",
               style: theme.titleSmall?.copyWith(
                 color: provider.isDark() ? AppColors.lighgrey : AppColors.black,
               ),
             ),
             Text(
-              "apartmentNumber : ${user.apartmentNumber.toString()}",
+              "${locale.apartmentNumberLabel} : ${user.apartmentNumber.toString()}",
               style: theme.titleSmall?.copyWith(
                 color: provider.isDark() ? AppColors.lighgrey : AppColors.black,
               ),
             ),
             Text(
-              user.isOwner ? "Owner" : "Tenant",
+              user.isOwner ? locale.owner : locale.tenant,
               style: theme.titleSmall?.copyWith(
                 color: provider.isDark() ? AppColors.lighgrey : AppColors.black,
               ),

@@ -24,7 +24,21 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> initializeSplash() async
   {
     await checktheme();
+    await checklanguage();
     await checkOnBoarding();
+  }
+
+  Future<void> checklanguage() async
+  {
+    final lan = await SharePrefService.getlanguage();
+    final provider = Provider.of<SettingProvider>(context, listen: false);
+
+    if (lan == "en") {
+      provider.changedlan(Locale("en"));
+    }
+    else if (lan == "ar") {
+      provider.changedlan(Locale("ar"));
+    }
   }
 
   Future<void> checktheme() async

@@ -65,5 +65,12 @@
   "addComplaint": "إضافة شكوى",
   "complaintDate": "تاريخ الشكوى",
   "complaintDescription": "وصف الشكوى",
-  "enterTitle": "أدخل العنوان"
+  "enterTitle": "أدخل العنوان",
+  "editComplaint": "تعديل الشكوى",
+  "updateComplaint": "تحديث الشكوى",
+  "editAchievement": "تعديل الإنجاز",
+  "updateAchievement": "تحديث الإنجاز",
+  "achievements": "الإنجازات"
+
+
 }

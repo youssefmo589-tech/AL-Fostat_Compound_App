@@ -25,7 +25,12 @@ class CustomeDropdownWidget extends StatelessWidget {
 
     return CustomDropdown<String>(
       decoration: CustomDropdownDecoration(
-        hintStyle: theme.titleSmall?.copyWith(
+        headerStyle: TextStyle(
+          color: provider.isDark() ? AppColors.lighgrey : AppColors.lighgreyev,
+          fontSize: 14,
+          fontWeight: FontWeight.w400,
+        ),
+        hintStyle: TextStyle(
           color: provider.isDark() ? AppColors.lighgrey : AppColors.lighgreyev,
           fontSize: 14,
           fontWeight: FontWeight.w400,

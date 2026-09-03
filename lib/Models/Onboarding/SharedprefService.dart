@@ -25,4 +25,19 @@ class SharePrefService {
     final prefs = await SharedPreferences.getInstance();
     return prefs.getString("theme") ?? "light";
   }
+
+  static Future<void> setlanguage(String language) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    if (language == "en") {
+      await prefs.setString("language", "en");
+    } else if (language == "ar") {
+      await prefs.setString("language", "ar");
+    }
+  }
+
+  static Future<String> getlanguage() async {
+    final prefs = await SharedPreferences.getInstance();
+    return prefs.getString("language") ?? "en";
+  }
 }

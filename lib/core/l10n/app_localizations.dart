@@ -493,6 +493,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter Title'**
   String get enterTitle;
+
+  /// No description provided for @editComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Complaint'**
+  String get editComplaint;
+
+  /// No description provided for @updateComplaint.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Complaint'**
+  String get updateComplaint;
+
+  /// No description provided for @editAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Achievement'**
+  String get editAchievement;
+
+  /// No description provided for @updateAchievement.
+  ///
+  /// In en, this message translates to:
+  /// **'Update Achievement'**
+  String get updateAchievement;
+
+  /// No description provided for @achievements.
+  ///
+  /// In en, this message translates to:
+  /// **'Achievements'**
+  String get achievements;
 }
 
 class _AppLocalizationsDelegate

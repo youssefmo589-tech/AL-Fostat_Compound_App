@@ -9,6 +9,8 @@ class UserModel {
 
   final String phone;
 
+  String ? image;
+
   final String? buildingNumber;
 
   final String? apartmentNumber;
@@ -22,6 +24,7 @@ class UserModel {
   final String ? fcmtoken;
 
   UserModel({
+    this.image,
     this.userid,
     required this.name,
     required this.email,
@@ -45,7 +48,8 @@ class UserModel {
       isTenant: json['isTenant'],
       isOwner: json['isOwner'],
       isPay: json['isPay'],
-        fcmtoken: json['fcmtoken']
+        fcmtoken: json['fcmtoken'],
+        image: json['image']
     );
   }
 
@@ -60,7 +64,8 @@ class UserModel {
       "isTenant": isTenant,
       "isOwner": isOwner,
       "isPay": isPay,
-      "fcmtoken": fcmtoken
+      "fcmtoken": fcmtoken,
+      "image": image
     };
   }
 }

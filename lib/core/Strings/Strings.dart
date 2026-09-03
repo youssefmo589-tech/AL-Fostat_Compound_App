@@ -10,7 +10,7 @@ class Strings {
 
   static const String MonthlyTitle = "Your Contributes.";
 
-  static const String ComplaintTitle = "Complaints";
+  static const String ComplaintTitle = "Complaints & Suggestions";
 
   static const String complaintimageblack = "assets/images/complaint black.png";
 

@@ -65,5 +65,14 @@
   "addComplaint": "Add Complaint",
   "complaintDate": "Complaint Date",
   "complaintDescription": "Complaint Description",
-  "enterTitle": "Enter Title"
+  "enterTitle": "Enter Title",
+  "editComplaint": "Edit Complaint",
+  "updateComplaint": "Update Complaint",
+  "editAchievement": "Edit Achievement",
+  "updateAchievement": "Update Achievement",
+  "achievements": "Achievements"
+
+
+
+
 }

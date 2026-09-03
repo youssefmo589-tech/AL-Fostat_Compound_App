@@ -25,81 +25,83 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
 
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
-    return Scaffold(
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back_ios_new,
-            size: 30,
-            color: provider.isDark() ? AppColors.green : AppColors.darkgreen,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Icon(
+              Icons.arrow_back_ios_new,
+              size: 30,
+              color: provider.isDark() ? AppColors.green : AppColors.darkgreen,
+            ),
           ),
+          title:
+          Padding(
+            padding: const EdgeInsets.all(80),
+            child: provider.isDark()
+                ? Assets.icons.logoTextblack01.svg(
+                colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn))
+                : Assets.icons.logoTextdarkgreen01.svg(
+                colorFilter: ColorFilter.mode(
+                    AppColors.darkgreen, BlendMode.srcIn)),
+          ),
+
+          centerTitle: true,
         ),
-        title:
-        Padding(
-          padding: const EdgeInsets.all(80),
-          child: provider.isDark()
-              ? Assets.icons.logoTextblack01.svg(
-              colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn))
-              : Assets.icons.logoTextdarkgreen01.svg(
-              colorFilter: ColorFilter.mode(
-                  AppColors.darkgreen, BlendMode.srcIn)),
-        ),
 
-        centerTitle: true,
-      ),
-
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Assets.images.changepass.image(
-                color: provider.isDark() ? AppColors.green : AppColors
-                    .darkgreen,
-              ),
-              SizedBox(height: 35),
-
-              Form(
-                key: _formkey,
-                child: CustomeTextField(hinttxt: "enter your email",
-                  controller: controller,
-                  prefixIcon: Icon(Icons.email_outlined, size: 24,
-                      color: provider.isDark() ? AppColors.green : AppColors
-                          .darkgreen),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "please , enter your email";
-                    }
-                    RegExp reg = RegExp(
-                      r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
-                    );
-                    if (!reg.hasMatch(value)) {
-                      return "please , enter a valid email";
-                    }
-                  },
+        body: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Assets.images.changepass.image(
+                  color: provider.isDark() ? AppColors.green : AppColors
+                      .darkgreen,
                 ),
-              ),
-              SizedBox(height: 20,),
-              GestureDetector(
-                  onTap: () async {
-                    if (_formkey.currentState!.validate()) {
-                      try {
-                        await FirebaseAuth.instance.sendPasswordResetEmail(
-                            email: controller.text.trim());
-                        AppSnackBar.success(
-                            "Check your email including spam folder");
-                      } on FirebaseAuthException catch (error) {
-                        AppSnackBar.error(error.message.toString());
-                      }
-                    }
-                  },
-                  child: CustomeButton(title: locale!.resetPassword)
+                SizedBox(height: 35),
 
-              ),
-            ],
+                Form(
+                  key: _formkey,
+                  child: CustomeTextField(hinttxt: "enter your email",
+                    controller: controller,
+                    prefixIcon: Icon(Icons.email_outlined, size: 24,
+                        color: provider.isDark() ? AppColors.green : AppColors
+                            .darkgreen),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "please , enter your email";
+                      }
+                      RegExp reg = RegExp(
+                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                      );
+                      if (!reg.hasMatch(value)) {
+                        return "please , enter a valid email";
+                      }
+                    },
+                  ),
+                ),
+                SizedBox(height: 20,),
+                GestureDetector(
+                    onTap: () async {
+                      if (_formkey.currentState!.validate()) {
+                        try {
+                          await FirebaseAuth.instance.sendPasswordResetEmail(
+                              email: controller.text.trim());
+                          AppSnackBar.success(
+                              "Check your email including spam folder");
+                        } on FirebaseAuthException catch (error) {
+                          AppSnackBar.error(error.message.toString());
+                        }
+                      }
+                    },
+                    child: CustomeButton(title: locale!.resetPassword)
+
+                ),
+              ],
+            ),
           ),
         ),
       ),

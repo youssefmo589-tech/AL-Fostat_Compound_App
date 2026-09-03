@@ -43,7 +43,7 @@ class TabBarItem extends StatelessWidget {
                         ? AppColors.black
                         : AppColors.white
                   : provider.isDark()
-                  ? AppColors.darkgreen
+                  ? AppColors.green
                   : AppColors.black,
             ),
             Text(
@@ -55,7 +55,7 @@ class TabBarItem extends StatelessWidget {
                           ? AppColors.black
                           : AppColors.white
                     : provider.isDark()
-                    ? AppColors.darkgreen
+                    ? AppColors.green
                     : AppColors.black,
               ),
             ),
