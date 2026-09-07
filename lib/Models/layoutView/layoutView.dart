@@ -24,11 +24,10 @@ class _LayoutViewState extends State<LayoutView> {
 
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
-    return SafeArea(
-      child: Scaffold(
-        body: pages[_currentindex],
+    return Scaffold(
+      body: SafeArea(child: pages[_currentindex]),
 
-        bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           onTap: (index) {
             setState(() {
@@ -110,7 +109,6 @@ class _LayoutViewState extends State<LayoutView> {
             ),
           ],
         ),
-      ),
     );
   }
 }

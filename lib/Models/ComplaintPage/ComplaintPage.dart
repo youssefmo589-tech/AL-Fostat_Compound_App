@@ -27,8 +27,7 @@ class _ComplaintsPageState extends State<ComplaintPage> {
     final theme = Theme
         .of(context)
         .textTheme;
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
@@ -46,7 +45,8 @@ class _ComplaintsPageState extends State<ComplaintPage> {
         centerTitle: true,
         ),
 
-        body: Padding(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: StreamBuilder(
 
@@ -103,6 +103,7 @@ class _ComplaintsPageState extends State<ComplaintPage> {
 
 
           ),
+          ),
         ),
 
         floatingActionButton: GestureDetector(
@@ -137,7 +138,7 @@ class _ComplaintsPageState extends State<ComplaintPage> {
             ),
           ),
         ),
-      ),
     );
+
   }
 }

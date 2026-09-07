@@ -133,8 +133,28 @@ flutter:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 400
         - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 500
         - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/alfont_com_Cairo-Black-1.ttf
+          weight: 300
+
+        - asset: assets/fonts/alfont_com_Cairo-Bold-1 (1).ttf
+          weight: 400
+
+        - asset: assets/fonts/alfont_com_Cairo-Light-1.ttf
+          weight: 600
+
+        - asset: assets/fonts/alfont_com_Cairo-Regular.ttf
+          weight: 700
+
+        - asset: assets/fonts/alfont_com_Cairo-SemiBold-1.ttf
+          weight: 900
 
   #         style: italic
   #   - family: Trajan Pro

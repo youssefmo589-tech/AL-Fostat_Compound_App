@@ -41,8 +41,7 @@ class _EditComplaintState extends State<EditComplaint> {
 
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
@@ -64,7 +63,8 @@ class _EditComplaintState extends State<EditComplaint> {
           centerTitle: true,
         ),
 
-        body: Padding(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: SingleChildScrollView(
             child: Column(
@@ -194,10 +194,11 @@ class _EditComplaintState extends State<EditComplaint> {
                 ),
               ],
             ),
+            ),
           ),
         ),
-      ),
     );
+    
   }
 
   Future<void> _selectdate(BuildContext context) async {

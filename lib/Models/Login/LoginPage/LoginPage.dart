@@ -37,9 +37,9 @@ class _LoginPageState extends State<LoginPage> {
     final locale = AppLocalizations.of(context);
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Container(
@@ -354,7 +354,7 @@ class _LoginPageState extends State<LoginPage> {
                                 Text(
                                   locale.loginWithGoogle,
                                   style: theme.titleMedium?.copyWith(
-                                    fontSize: 18,
+                                    fontSize: 17,
                                     color: provider.isDark()
                                         ? AppColors.green
                                         : AppColors.darkgreen,
@@ -374,5 +374,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+
   }
 }

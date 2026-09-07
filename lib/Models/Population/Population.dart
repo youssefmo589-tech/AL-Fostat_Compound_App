@@ -57,9 +57,9 @@ class _PopulationState extends State<Population> {
 
     final theme = Theme.of(context).textTheme;
     final provider = Provider.of<SettingProvider>(context);
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             spacing: 16,
             children: [
@@ -169,5 +169,6 @@ class _PopulationState extends State<Population> {
         ),
       ),
     );
+   
   }
 }

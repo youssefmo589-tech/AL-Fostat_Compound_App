@@ -46,9 +46,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
           backgroundColor: Colors.transparent,
           leading: _selectedindex != 0
               ? GestureDetector(
@@ -109,7 +108,8 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           ],
         ),
 
-        body: Column(
+      body: SafeArea(
+        child: Column(
           children: [
             Expanded(
               child: PageView.builder(

@@ -64,9 +64,8 @@ class _HomeState extends State<Home> {
 
     final theme = Theme.of(context).textTheme;
     final provider = Provider.of<SettingProvider>(context);
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,7 +127,20 @@ class _HomeState extends State<Home> {
                                 size: 24,
                               ),
                             ),
-                    ],
+                    user?.image == null
+                        ? CircleAvatar(
+                            radius: 15,
+                            backgroundColor: AppColors.lighgreyev,
+                            child: Icon(
+                              Icons.person,
+                              color: AppColors.darkgrey,
+                              size: 20,
+                            ),
+                          )
+                        : CircleAvatar(
+                            radius: 15,
+                            backgroundImage: AssetImage(user!.image!),
+                          )],
                   ),
                 ],
               ),
@@ -186,7 +198,6 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
-      ),
     );
   }
 }

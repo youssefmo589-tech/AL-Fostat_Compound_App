@@ -48,8 +48,7 @@ class _letsStartState extends State<letsStart> {
         .of(context)
         .textTheme;
 
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
 
           title: Padding(
@@ -63,7 +62,8 @@ class _letsStartState extends State<letsStart> {
           ),
         ),
 
-        body: Padding(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -302,9 +302,10 @@ class _letsStartState extends State<letsStart> {
             ],
           ),
         ),
-
       ),
+
     );
+   
   }
 
 

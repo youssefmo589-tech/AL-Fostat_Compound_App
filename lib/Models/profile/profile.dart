@@ -1,7 +1,9 @@
 import 'package:alfostat/Models/profile/profileCard.dart';
+import 'package:alfostat/Services/BotToastservice.dart';
 import 'package:alfostat/core/provider/SettingProvider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:provider/provider.dart';
 
@@ -53,9 +55,9 @@ class _ProfileState extends State<Profile> {
 
     final theme = Theme.of(context).textTheme;
     final provider = Provider.of<SettingProvider>(context);
-    return SafeArea(
-      child: Scaffold(
-        body: Padding(
+    return Scaffold(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: SingleChildScrollView(
             child: Column(
@@ -383,6 +385,40 @@ class _ProfileState extends State<Profile> {
                         optionicon: Icon(Icons.logout, color: Colors.red),
                       ),
                     ),
+                    GestureDetector(
+
+                      onTap: () async {
+                        EasyLoading.show();
+                        final res = await FireStoreCloudServiceUser.deleteuser(
+                            user!.userid!);
+                        if (res) {
+                          AppSnackBar.success("user deleted");
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, AppRouteName.LoginPage, (
+                              route) => false);
+                          EasyLoading.dismiss();
+                        }
+                        else {
+                          AppSnackBar.error("user not deleted");
+                          EasyLoading.dismiss();
+                        }
+                      },
+
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(16),
+
+                        ),
+                        child: Center(child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Text("Delete Account",
+                            style: theme.titleLarge?.copyWith(
+                                fontSize: 16, color: AppColors.white),),
+                        )),
+                      ),
+                    )
                   ],
                 ),
               ],

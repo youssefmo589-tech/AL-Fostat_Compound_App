@@ -24,8 +24,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
     final locale = AppLocalizations.of(context);
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -45,7 +44,8 @@ class _AchievementsPageState extends State<AchievementsPage> {
 
         ),
 
-        body: Padding(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: StreamBuilder(
 
@@ -102,6 +102,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
 
 
           ),
+          ),
         ),
 
         floatingActionButton: GestureDetector(
@@ -136,7 +137,7 @@ class _AchievementsPageState extends State<AchievementsPage> {
             ),
           ),
         ),
-      ),
     );
+
   }
 }

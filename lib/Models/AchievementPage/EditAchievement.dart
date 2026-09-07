@@ -41,8 +41,7 @@ class _EditAchievementState extends State<EditAchievement> {
 
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
@@ -64,7 +63,8 @@ class _EditAchievementState extends State<EditAchievement> {
           centerTitle: true,
         ),
 
-        body: Padding(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: SingleChildScrollView(
             child: Column(
@@ -193,10 +193,11 @@ class _EditAchievementState extends State<EditAchievement> {
                 ),
               ],
             ),
+            ),
           ),
         ),
-      ),
     );
+
   }
 
   Future<void> _selectdate(BuildContext context) async {

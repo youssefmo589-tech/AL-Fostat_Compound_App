@@ -61,16 +61,19 @@ class _SignupPageState extends State<SignupPage> {
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
 
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height * 0.20,
+                    height: MediaQuery
+                        .of(context)
+                        .size
+                        .height * 0.20,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
@@ -348,20 +351,20 @@ class _SignupPageState extends State<SignupPage> {
                                       .createAccount(email.text, password.text);
                                   if (isaccountcreated) {
                                     UserModel user = UserModel(
-                                        name: name.text,
-                                        email: email.text,
-                                        phone: phone.text,
-                                        buildingNumber: _buildingNumber,
-                                        apartmentNumber: _apartmentNumber,
-                                        isTenant: _OwnerorTenant == "Tenant"
-                                            ? true
-                                            : false,
-                                        isOwner: _OwnerorTenant == "Owner"
-                                            ? true
-                                            : false,
-                                        isPay: false,
-                                        userid: FirebaseAuth.instance
-                                            .currentUser!.uid,
+                                      name: name.text,
+                                      email: email.text,
+                                      phone: phone.text,
+                                      buildingNumber: _buildingNumber,
+                                      apartmentNumber: _apartmentNumber,
+                                      isTenant: _OwnerorTenant == "Tenant"
+                                          ? true
+                                          : false,
+                                      isOwner: _OwnerorTenant == "Owner"
+                                          ? true
+                                          : false,
+                                      isPay: false,
+                                      userid: FirebaseAuth.instance
+                                          .currentUser!.uid,
 
                                       fcmtoken: token,
                                     );
@@ -396,11 +399,9 @@ class _SignupPageState extends State<SignupPage> {
                                   AppSnackBar.error(
                                       "Please Complete All Fields");
                                 }
-
-
                               }
                             },
-                            child: CustomeButton(title: "Sign up"),
+                            child: CustomeButton(title: locale.signup),
                           ) : SizedBox(),
                           isgoogleaccount ? SizedBox() : SizedBox(height: 40),
                           Center(
@@ -408,7 +409,7 @@ class _SignupPageState extends State<SignupPage> {
                               TextSpan(
                                 children: [
                                   TextSpan(
-                                    text: "Already have an account?",
+                                    text: locale.alreadyHaveAccount,
                                     style: theme.titleSmall?.copyWith(
                                       color: provider.isDark()
                                           ? AppColors.lighgrey
@@ -417,13 +418,13 @@ class _SignupPageState extends State<SignupPage> {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: "Login",
+                                    text: locale.login,
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
                                         Navigator.pushNamedAndRemoveUntil(
                                           context,
                                           AppRouteName.LoginPage,
-                                          (route) => false,
+                                              (route) => false,
                                         );
                                       },
                                     style: theme.titleSmall?.copyWith(
@@ -581,6 +582,7 @@ class _SignupPageState extends State<SignupPage> {
         ),
       ),
     );
+
   }
 
   void onchangedownerortenant(String value) {

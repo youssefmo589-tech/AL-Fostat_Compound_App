@@ -25,9 +25,8 @@ class ComplaintDetails extends StatelessWidget {
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
           leading: GestureDetector(
             onTap: () {
               Navigator.pop(context);
@@ -82,7 +81,8 @@ class ComplaintDetails extends StatelessWidget {
           ],
         ),
 
-        body: Padding(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: SingleChildScrollView(
             child: Column(
@@ -240,8 +240,8 @@ class ComplaintDetails extends StatelessWidget {
               ],
             ),
           ),
+          ),
         ),
-      ),
     );
   }
 }
