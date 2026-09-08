@@ -69,6 +69,7 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: SingleChildScrollView(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   "Change Name",
@@ -79,11 +80,12 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
                     fontSize: 24,
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 16),
 
                 Form(
                   key: _formkey,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CustomeTextField(
                         hinttxt: namecontroller.text,
@@ -95,7 +97,7 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
                         },
                       ),
 
-                      SizedBox(height: 16),
+                      SizedBox(height: 35),
 
                       Text(
                         "Change Phone",
@@ -106,7 +108,7 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
                           fontSize: 24,
                         ),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 16),
                       CustomeTextField(
                         hinttxt: phonecontroller.text,
                         controller: phonecontroller,
@@ -122,7 +124,7 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
                     ],
                   ),
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: 50),
 
                 Bounceable(
                   onTap: () async {
