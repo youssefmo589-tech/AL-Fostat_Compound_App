@@ -1,3 +1,4 @@
+import 'package:alfostat/Models/Login/ForgetPasswordPage/VerifyMyEmail.dart';
 import 'package:alfostat/Services/BotToastservice.dart';
 import 'package:alfostat/core/Classes/UserModel/UserModel.dart';
 import 'package:alfostat/core/FirebaseServices/FirebaseAuth/FirebaseAuth.dart';
@@ -369,29 +370,36 @@ class _SignupPageState extends State<SignupPage> {
                                       fcmtoken: token,
                                     );
 
+                                    EasyLoading.dismiss();
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) =>
+                                            VerifyMyEmail(),
+                                            settings: RouteSettings(
+                                                arguments: user)));
 
-                                    bool isusercreated = await FireStoreCloudServiceUser
-                                        .createuser(user);
-                                    if (isusercreated) {
-                                      EasyLoading.dismiss();
-                                      AppSnackBar.success(
-                                          "create user is success");
-                                      Navigator.pushNamedAndRemoveUntil(
-                                        context,
-                                        AppRouteName.LayoutView,
-                                            (route) => false,
-                                      );
-                                    }
-                                    else {
-                                      EasyLoading.dismiss();
-                                      AppSnackBar.error(
-                                          "create user is failed");
-                                    }
+
+                                    // bool isusercreated = await FireStoreCloudServiceUser
+                                    //     .createuser(user);
+                                    // if (isusercreated) {
+                                    //   EasyLoading.dismiss();
+                                    //   AppSnackBar.success(
+                                    //       "create user is success");
+                                    //   Navigator.pushNamedAndRemoveUntil(
+                                    //     context,
+                                    //     AppRouteName.LayoutView,
+                                    //         (route) => false,
+                                    //   );
+                                    // }
+                                    // else {
+                                    //   EasyLoading.dismiss();
+                                    //   AppSnackBar.error(
+                                    //       "create user is failed");
+                                    // }
                                   }
                                   else {
                                     EasyLoading.dismiss();
                                     AppSnackBar.error(
-                                        "create account is failed");
+                                        "create account is failed , may be this email is exist");
                                   }
                                 }
                                 else {

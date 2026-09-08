@@ -8,6 +8,7 @@ import '../../Models/ComplaintPage/ComplaintDetails.dart';
 import '../../Models/ComplaintPage/ComplaintPage.dart';
 import '../../Models/HomePage/Home.dart';
 import '../../Models/Login/ForgetPasswordPage/ForgetPasswordPage.dart';
+import '../../Models/Login/ForgetPasswordPage/VerifyMyEmail.dart';
 import '../../Models/Login/LoginPage/LoginPage.dart';
 import '../../Models/Login/SignUpPage/SignupPage.dart';
 import '../../Models/Onboarding/OnBoardingPages.dart';
@@ -71,8 +72,8 @@ class AppConfig {
       case AppRouteName.ChangeLanguage:
         return MaterialPageRoute(builder: (context) => ChangeLanguage());
 
-      // case AppRouteName.VerifyMyEmail:
-      //   return MaterialPageRoute(builder: (context) => VerifyMyEmail());
+      case AppRouteName.VerifyMyEmail:
+        return MaterialPageRoute(builder: (context) => VerifyMyEmail());
     }
   }
 }

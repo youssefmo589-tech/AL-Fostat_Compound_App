@@ -36,8 +36,37 @@ class $AssetsFontsGen {
   /// File path: assets/fonts/Poppins-SemiBold.ttf
   String get poppinsSemiBold => 'assets/fonts/Poppins-SemiBold.ttf';
 
+  /// File path: assets/fonts/alfont_com_Cairo-Black-1.ttf
+  String get alfontComCairoBlack1 =>
+      'assets/fonts/alfont_com_Cairo-Black-1.ttf';
+
+  /// File path: assets/fonts/alfont_com_Cairo-Bold-1 (1).ttf
+  String get alfontComCairoBold11 =>
+      'assets/fonts/alfont_com_Cairo-Bold-1 (1).ttf';
+
+  /// File path: assets/fonts/alfont_com_Cairo-Light-1.ttf
+  String get alfontComCairoLight1 =>
+      'assets/fonts/alfont_com_Cairo-Light-1.ttf';
+
+  /// File path: assets/fonts/alfont_com_Cairo-Regular.ttf
+  String get alfontComCairoRegular =>
+      'assets/fonts/alfont_com_Cairo-Regular.ttf';
+
+  /// File path: assets/fonts/alfont_com_Cairo-SemiBold-1.ttf
+  String get alfontComCairoSemiBold1 =>
+      'assets/fonts/alfont_com_Cairo-SemiBold-1.ttf';
+
   /// List of all assets
-  List<String> get values => [poppinsMedium, poppinsRegular, poppinsSemiBold];
+  List<String> get values => [
+    poppinsMedium,
+    poppinsRegular,
+    poppinsSemiBold,
+    alfontComCairoBlack1,
+    alfontComCairoBold11,
+    alfontComCairoLight1,
+    alfontComCairoRegular,
+    alfontComCairoSemiBold1,
+  ];
 }
 
 class $AssetsIconsGen {
@@ -244,6 +273,14 @@ class $AssetsImagesGen {
   AssetGenImage get onboardingpage3 =>
       const AssetGenImage('assets/images/onboardingpage3.png');
 
+  /// File path: assets/images/verification dark.png
+  AssetGenImage get verificationDark =>
+      const AssetGenImage('assets/images/verification dark.png');
+
+  /// File path: assets/images/verification light.png
+  AssetGenImage get verificationLight =>
+      const AssetGenImage('assets/images/verification light.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     achieveMentLight,
@@ -281,6 +318,8 @@ class $AssetsImagesGen {
     onboardingPage1,
     onboardingPage2,
     onboardingpage3,
+    verificationDark,
+    verificationLight,
   ];
 }
 

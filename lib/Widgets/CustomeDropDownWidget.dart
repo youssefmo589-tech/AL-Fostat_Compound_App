@@ -25,6 +25,11 @@ class CustomeDropdownWidget extends StatelessWidget {
 
     return CustomDropdown<String>(
       decoration: CustomDropdownDecoration(
+        listItemStyle: TextStyle(
+          color: AppColors.black,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+        ),
         headerStyle: TextStyle(
           color: provider.isDark() ? AppColors.lighgrey : AppColors.lighgreyev,
           fontSize: 14,
