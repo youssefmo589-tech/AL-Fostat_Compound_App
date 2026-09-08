@@ -76,26 +76,6 @@ class FireStoreCloudServiceUser {
     return collectionref.snapshots();
   }
 
-
-  // static Future<bool> isapartmentexist(String buildingnumber , String apartmentnumber)async
-  // {
-  //
-  //   final collectionref =  getcollectionref();
-  //   final data = await collectionref.get() ;
-  //
-  //   for(var user in data.docs)
-  //   {
-  //     if(user.data().buildingNumber == buildingnumber && user.data().apartmentNumber == apartmentnumber)
-  //       {
-  //         return Future.value(true) ;
-  //       }
-  //
-  //   }
-  //   return Future.value(false) ;
-  //
-  //
-  // }
-
   static Future<bool> isapartmentexist(String buildingnumber,
       String apartmentnumber) async
   {

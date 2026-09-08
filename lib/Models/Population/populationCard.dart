@@ -27,19 +27,55 @@ class PopulationCard extends StatelessWidget {
         ),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(12),
+        padding: const EdgeInsets.only(right: 12, left: 12, bottom: 12),
         child: Column(
           spacing: 8,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "${locale!.nameLabel} : ${user.name}",
-              style: theme.titleSmall?.copyWith(
-                color: provider.isDark() ? AppColors.lighgrey : AppColors.black,
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: provider.isDark() ? AppColors.green : AppColors
+                    .darkgreen,
+                borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(16)),
+
               ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "${user.name}",
+                      style: theme.titleSmall?.copyWith(
+                        color: provider.isDark() ? AppColors.black : AppColors
+                            .lighgrey,
+                      ),
+                    ),
+
+                    user.image == null
+                        ? CircleAvatar(
+                      radius: 15,
+                      backgroundColor: AppColors.lighgreyev,
+                      child: Icon(
+                        Icons.person,
+                        color: AppColors.darkgrey,
+                        size: 20,
+                      ),
+                    )
+                        : CircleAvatar(
+                      radius: 15,
+                      backgroundImage: AssetImage(user.image!),
+                    )
+                  ],
+                ),
+              ),
+
             ),
+
             Text(
-              "${locale.phoneNumberLabel} : ${user.phone}",
+              "${locale!.phoneNumberLabel} : ${user.phone}",
               style: theme.titleSmall?.copyWith(
                 color: provider.isDark() ? AppColors.lighgrey : AppColors.black,
               ),

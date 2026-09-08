@@ -291,18 +291,46 @@ class _ProfileState extends State<Profile> {
                         }
                     );
                   },
-                  child: user?.image == null ? CircleAvatar(
-                    radius: 60,
-                    backgroundColor: provider.isDark()
-                        ? AppColors.lighgrey
-                        : AppColors.darkgrey,
-                    child: Icon(Icons.person, size: 85,
-                        color: provider.isDark()
-                            ? AppColors.darkgrey
-                            : AppColors.lighgrey),
-                  ) : CircleAvatar(
-                    radius: 60,
-                    backgroundImage: AssetImage(user!.image!),
+                  child: user?.image == null ? Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 60,
+                        backgroundColor: provider.isDark()
+                            ? AppColors.lighgrey
+                            : AppColors.darkgrey,
+                        child: Icon(Icons.person, size: 85,
+                            color: provider.isDark()
+                                ? AppColors.darkgrey
+                                : AppColors.lighgrey),
+                      ),
+
+                      Positioned(
+                        bottom: 0,
+                        child: CircleAvatar(
+                          radius: 15,
+                          backgroundColor: Colors.blue,
+                          child: Icon(
+                            Icons.add, size: 12, color: Colors.white,),
+                        ),
+                      )
+                    ],
+                  )
+                      : Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 60,
+                        backgroundImage: AssetImage(user!.image!),
+                      ),
+                      Positioned(
+                        bottom: 0,
+                        child: CircleAvatar(
+                          radius: 13,
+                          backgroundColor: Colors.blue,
+                          child: Icon(
+                            Icons.add, size: 15, color: Colors.white,),
+                        ),
+                      )
+                    ],
                   ),
                 ),
 
@@ -388,20 +416,50 @@ class _ProfileState extends State<Profile> {
                     GestureDetector(
 
                       onTap: () async {
-                        EasyLoading.show();
-                        final res = await FireStoreCloudServiceUser.deleteuser(
-                            user!.userid!);
-                        if (res) {
-                          AppSnackBar.success("user deleted");
-                          Navigator.pushNamedAndRemoveUntil(
-                              context, AppRouteName.LoginPage, (
-                              route) => false);
+                        try {
+                          EasyLoading.show();
+
+                          final currentUser = FirebaseAuth.instance.currentUser;
+
+                          // Delete from Firebase Authentication
+                          if (currentUser != null) {
+                            await currentUser.delete();
+                          }
+
+                          // Delete from Firestore
+                          final res = await FireStoreCloudServiceUser
+                              .deleteuser(
+                            user!.userid!,
+                          );
+
+                          if (res) {
+                            AppSnackBar.success("User deleted");
+
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              AppRouteName.LoginPage,
+                                  (route) => false,
+                            );
+                          } else {
+                            AppSnackBar.error(
+                                "User data not deleted from Firestore");
+                          }
+                        } on FirebaseAuthException catch (e) {
+                          if (e.code == 'requires-recent-login') {
+                            AppSnackBar.error(
+                              "Please login again before deleting your account",
+                            );
+                          } else {
+                            AppSnackBar.error(
+                              e.message ?? "Account deletion failed",
+                            );
+                          }
+                        } catch (e) {
+                          AppSnackBar.error("Something went wrong");
+                        } finally {
                           EasyLoading.dismiss();
                         }
-                        else {
-                          AppSnackBar.error("user not deleted");
-                          EasyLoading.dismiss();
-                        }
+
                       },
 
                       child: Container(

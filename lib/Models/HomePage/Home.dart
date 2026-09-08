@@ -140,8 +140,8 @@ class _HomeState extends State<Home> {
                         : CircleAvatar(
                             radius: 15,
                             backgroundImage: AssetImage(user!.image!),
-                          )],
-                  ),
+                          ),
+                  ]),
                 ],
               ),
               SizedBox(height: 20),

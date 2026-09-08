@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -55,11 +56,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> checkOnBoarding() async {
     bool isseen = await SharePrefService.getSeen();
-    if (isseen) {
-      Future.delayed(Duration(seconds: 4), () {
+    final currentuser = FirebaseAuth.instance.currentUser;
+    if (isseen && currentuser != null) {
+      Future.delayed(const Duration(seconds: 4), () {
         Navigator.pushNamedAndRemoveUntil(
           context,
-          AppRouteName.letsStart,
+          AppRouteName.LayoutView,
           (route) => false,
         );
       });
@@ -69,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen> {
           context,
           AppRouteName.letsStart,
           (route) => false,
-        ); ////// layouttttttttt
+        );
       });
     }
   }
