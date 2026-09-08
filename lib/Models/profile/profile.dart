@@ -413,6 +413,45 @@ class _ProfileState extends State<Profile> {
                         optionicon: Icon(Icons.logout, color: Colors.red),
                       ),
                     ),
+
+                    GestureDetector(
+
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, AppRouteName.UpdateProfileData);
+                      },
+                      child: Container(
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: provider.isDark() ? AppColors.green : AppColors
+                              .darkgreen,
+                          borderRadius: BorderRadius.circular(16),
+
+                        ),
+                        child: Center(child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Edit Account Data",
+                                style: theme.titleLarge?.copyWith(
+                                    fontSize: 16,
+                                    color: provider.isDark()
+                                        ? AppColors.black
+                                        : AppColors.lighgrey),),
+                              Icon(
+                                Icons.arrow_forward_ios_outlined,
+                                color: provider.isDark()
+                                    ? AppColors.black
+                                    : AppColors.lighgrey,
+                              ),
+                            ],
+                          ),
+                        )),
+                      ),
+                    ),
+
+
                     GestureDetector(
 
                       onTap: () async {

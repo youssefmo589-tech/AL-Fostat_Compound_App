@@ -32,4 +32,6 @@ class AppRouteName {
   static const String ChangeLanguage = '/ChangeLanguage';
 
   static const String VerifyMyEmail = '/VerifyMyEmail';
+
+  static const String UpdateProfileData = '/UpdateProfileData';
 }

@@ -15,6 +15,7 @@ import '../../Models/Onboarding/OnBoardingPages.dart';
 import '../../Models/Onboarding/letsStart.dart';
 import '../../Models/SubscriptionPage/SubscriptionPage.dart';
 import '../../Models/layoutView/layoutView.dart';
+import '../../Models/profile/UpdateProfileData.dart';
 import '../../Models/profile/changeLan.dart';
 import '../../Models/splashScreen/splashScreen.dart';
 import 'AppRouteName.dart';
@@ -74,6 +75,9 @@ class AppConfig {
 
       case AppRouteName.VerifyMyEmail:
         return MaterialPageRoute(builder: (context) => VerifyMyEmail());
+
+      case AppRouteName.UpdateProfileData:
+        return MaterialPageRoute(builder: (context) => UpdateProfileData());
     }
   }
 }

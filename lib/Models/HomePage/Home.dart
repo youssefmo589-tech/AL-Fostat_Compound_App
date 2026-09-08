@@ -73,7 +73,9 @@ class _HomeState extends State<Home> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
@@ -96,6 +98,7 @@ class _HomeState extends State<Home> {
                       ),
                     ],
                   ),
+                ),
                   Row(
                     spacing: 8,
                     children: [

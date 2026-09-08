@@ -108,4 +108,18 @@ class FireStoreCloudServiceUser {
     await docRef.update({"image": image});
   }
 
+  static Future<void> UpdateName(UserModel user, String name) async
+  {
+    final collectionref = getcollectionref();
+    final docRef = collectionref.doc(user.userid);
+    await docRef.update({"name": name});
+  }
+
+  static Future<void> UpdatePhone(UserModel user, String phone) async
+  {
+    final collectionref = getcollectionref();
+    final docRef = collectionref.doc(user.userid);
+    await docRef.update({"phone": phone});
+  }
+
 }

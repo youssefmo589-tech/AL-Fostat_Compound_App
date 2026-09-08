@@ -47,7 +47,6 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       builder: EasyLoading.init(builder: BotToastInit()),
-
       debugShowCheckedModeBanner: false,
       initialRoute: AppRouteName.initial,
       locale: provider.currentLocale,
