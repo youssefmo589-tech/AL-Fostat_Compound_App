@@ -10,6 +10,7 @@ import '../../../core/AppTheme/AppColors.dart';
 import '../../../core/Classes/UserModel/UserModel.dart';
 import '../../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
 import '../../../core/gen/assets.gen.dart';
+import '../../../core/l10n/app_localizations.dart';
 import '../../../core/provider/SettingProvider.dart';
 
 class VerifyMyEmail extends StatefulWidget {
@@ -52,10 +53,6 @@ class _VerifymyemailState extends State<VerifyMyEmail>
         );
       }
     }
-    // else
-    //   {
-    //     await FirebaseAuth.instance.currentUser?.delete() ;
-    //   }
   }
 
   final _formkey = GlobalKey<FormState>();
@@ -63,6 +60,7 @@ class _VerifymyemailState extends State<VerifyMyEmail>
   bool ishidden = false;
 
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
     final user = ModalRoute.of(context)?.settings.arguments as UserModel;
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
@@ -79,7 +77,7 @@ class _VerifymyemailState extends State<VerifyMyEmail>
                     : Assets.images.verificationDark.image(),
 
                 Text(
-                  "Verify Your Email",
+                  locale!.verifyYourEmail,
                   style: theme.titleLarge?.copyWith(
                     color: provider.isDark()
                         ? AppColors.green
@@ -89,7 +87,7 @@ class _VerifymyemailState extends State<VerifyMyEmail>
                 ),
                 SizedBox(height: 16),
                 Text(
-                  "Tap the button, go to your email inbox or spam folder, tap the verification link, and then return to the app.",
+                  locale!.verifyEmailInstruction,
                   style: theme.titleSmall?.copyWith(
                     fontSize: 18,
                     color: provider.isDark()
@@ -105,7 +103,7 @@ class _VerifymyemailState extends State<VerifyMyEmail>
 
                       AppSnackBar.warning("Check Your Email Messages");
                     },
-                    child: CustomeButton(title: "Verify My Email"),
+                    child: CustomeButton(title: locale!.verifyMyEmail),
                   ),
                 ),
               ],

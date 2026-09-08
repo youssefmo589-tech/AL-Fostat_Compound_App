@@ -37,7 +37,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get arabic => 'العربية';
 
   @override
-  String get theme => 'الظهر / المظهر';
+  String get theme => 'المظهر';
 
   @override
   String get onboardingTitle1 => 'مجتمعك في تطبيق واحد';
@@ -224,4 +224,32 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get achievements => 'الإنجازات';
+
+  @override
+  String get changeName => 'تغيير الاسم';
+
+  @override
+  String get changePhone => 'تغيير رقم الهاتف';
+
+  @override
+  String get saveChanges => 'حفظ التغييرات';
+
+  @override
+  String get verifyYourEmail => 'تأكيد بريدك الإلكتروني';
+
+  @override
+  String get verifyEmailInstruction =>
+      'اضغط على الزر، انتقل إلى صندوق البريد أو البريد العشوائي (Spam)، اضغط على رابط التأكيد، ثم عد إلى التطبيق.';
+
+  @override
+  String get verifyMyEmail => 'تأكيد بريدي الإلكتروني';
+
+  @override
+  String get editAccountData => 'تعديل بيانات الحساب';
+
+  @override
+  String get deleteAccount => 'حذف الحساب';
+
+  @override
+  String get deletePhoto => 'حذف الصوره';
 }

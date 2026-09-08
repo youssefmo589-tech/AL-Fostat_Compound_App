@@ -9,7 +9,7 @@
   "language": "اللغة",
   "english": "الإنجليزية",
   "arabic": "العربية",
-  "theme": "الظهر / المظهر",
+  "theme": "المظهر",
   "onboardingTitle1": "مجتمعك في تطبيق واحد",
   "onboardingSubTitle1": "ابقَ على اتصال بجميع الأحداث في مجتمعك السكني. تابع التحديثات، الإنجازات، والإعلانات الهامة.",
   "onboardingTitle2": "شاهد ما يحدث",
@@ -70,7 +70,17 @@
   "updateComplaint": "تحديث الشكوى",
   "editAchievement": "تعديل الإنجاز",
   "updateAchievement": "تحديث الإنجاز",
-  "achievements": "الإنجازات"
+  "achievements": "الإنجازات",
+  "changeName": "تغيير الاسم",
+  "changePhone": "تغيير رقم الهاتف",
+  "saveChanges": "حفظ التغييرات",
+  "verifyYourEmail": "تأكيد بريدك الإلكتروني",
+  "verifyEmailInstruction": "اضغط على الزر، انتقل إلى صندوق البريد أو البريد العشوائي (Spam)، اضغط على رابط التأكيد، ثم عد إلى التطبيق.",
+  "verifyMyEmail": "تأكيد بريدي الإلكتروني",
+  "editAccountData": "تعديل بيانات الحساب",
+  "deleteAccount": "حذف الحساب",
+  "deletePhoto": "حذف الصوره"
+
 
 
 }

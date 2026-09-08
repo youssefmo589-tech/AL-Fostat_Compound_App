@@ -70,7 +70,16 @@
   "updateComplaint": "Update Complaint",
   "editAchievement": "Edit Achievement",
   "updateAchievement": "Update Achievement",
-  "achievements": "Achievements"
+  "achievements": "Achievements",
+  "changeName": "Change Name",
+  "changePhone": "Change Phone",
+  "saveChanges": "Save Changes",
+  "verifyYourEmail": "Verify Your Email",
+  "verifyEmailInstruction": "Tap the button, go to your email inbox or spam folder, tap the verification link, and then return to the app.",
+  "verifyMyEmail": "Verify My Email",
+  "editAccountData": "Edit Account Data",
+  "deleteAccount": "Delete Account",
+  "deletePhoto": "Delete Photo"
 
 
 

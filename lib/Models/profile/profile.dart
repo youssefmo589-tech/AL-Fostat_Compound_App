@@ -432,7 +432,7 @@ class _ProfileState extends State<Profile> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("Edit Account Data",
+                              Text(locale.editAccountData,
                                 style: theme.titleLarge?.copyWith(
                                     fontSize: 16,
                                     color: provider.isDark()
@@ -509,7 +509,7 @@ class _ProfileState extends State<Profile> {
                         ),
                         child: Center(child: Padding(
                           padding: const EdgeInsets.all(16),
-                          child: Text("Delete Account",
+                          child: Text(locale.deleteAccount,
                             style: theme.titleLarge?.copyWith(
                                 fontSize: 16, color: AppColors.white),),
                         )),

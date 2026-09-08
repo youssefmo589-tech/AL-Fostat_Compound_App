@@ -11,6 +11,7 @@ import '../../core/AppTheme/AppColors.dart';
 import '../../core/AppeRoutes/AppRouteName.dart';
 import '../../core/Classes/UserModel/UserModel.dart';
 import '../../core/FirebaseServices/FirestoreCloudServices/FireCloudServiceToUser.dart';
+import '../../core/l10n/app_localizations.dart';
 import '../../core/provider/SettingProvider.dart';
 
 class UpdateProfileData extends StatefulWidget {
@@ -48,6 +49,7 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
     final _formkey = GlobalKey<FormState>();
@@ -72,7 +74,7 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Change Name",
+                  locale!.changeName,
                   style: theme.titleLarge?.copyWith(
                     color: provider.isDark()
                         ? AppColors.green
@@ -100,7 +102,7 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
                       SizedBox(height: 35),
 
                       Text(
-                        "Change Phone",
+                        locale!.changePhone,
                         style: theme.titleLarge?.copyWith(
                           color: provider.isDark()
                               ? AppColors.green
@@ -146,7 +148,7 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
                     ),
                     child: Center(child: Padding(
                       padding: const EdgeInsets.all(16),
-                      child: Text("Delete Photo",
+                      child: Text(locale!.deletePhoto,
                         style: theme.titleLarge?.copyWith(
                             fontSize: 16, color: AppColors.white),),
                     )),
@@ -197,7 +199,7 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
                     }
                   },
 
-                  child: CustomeButton(title: "Save Changes"),
+                  child: CustomeButton(title: locale!.saveChanges),
                 ),
               ],
             ),

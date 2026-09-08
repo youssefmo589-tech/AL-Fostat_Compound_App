@@ -224,4 +224,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get achievements => 'Achievements';
+
+  @override
+  String get changeName => 'Change Name';
+
+  @override
+  String get changePhone => 'Change Phone';
+
+  @override
+  String get saveChanges => 'Save Changes';
+
+  @override
+  String get verifyYourEmail => 'Verify Your Email';
+
+  @override
+  String get verifyEmailInstruction =>
+      'Tap the button, go to your email inbox or spam folder, tap the verification link, and then return to the app.';
+
+  @override
+  String get verifyMyEmail => 'Verify My Email';
+
+  @override
+  String get editAccountData => 'Edit Account Data';
+
+  @override
+  String get deleteAccount => 'Delete Account';
+
+  @override
+  String get deletePhoto => 'Delete Photo';
 }

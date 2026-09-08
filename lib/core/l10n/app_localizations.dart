@@ -523,6 +523,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Achievements'**
   String get achievements;
+
+  /// No description provided for @changeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Name'**
+  String get changeName;
+
+  /// No description provided for @changePhone.
+  ///
+  /// In en, this message translates to:
+  /// **'Change Phone'**
+  String get changePhone;
+
+  /// No description provided for @saveChanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Save Changes'**
+  String get saveChanges;
+
+  /// No description provided for @verifyYourEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify Your Email'**
+  String get verifyYourEmail;
+
+  /// No description provided for @verifyEmailInstruction.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the button, go to your email inbox or spam folder, tap the verification link, and then return to the app.'**
+  String get verifyEmailInstruction;
+
+  /// No description provided for @verifyMyEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify My Email'**
+  String get verifyMyEmail;
+
+  /// No description provided for @editAccountData.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Account Data'**
+  String get editAccountData;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Account'**
+  String get deleteAccount;
+
+  /// No description provided for @deletePhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Photo'**
+  String get deletePhoto;
 }
 
 class _AppLocalizationsDelegate
