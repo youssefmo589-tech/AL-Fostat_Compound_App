@@ -28,29 +28,24 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: GestureDetector(
-            onTap: () {
+          leading: IconButton(
+            onPressed: () {
               Navigator.pop(context);
             },
-            child: Icon(
+            icon: Icon(
               Icons.arrow_back_ios_new,
               size: 30,
               color: provider.isDark() ? AppColors.green : AppColors.darkgreen,
             ),
           ),
-          title:
-          Padding(
-            padding: const EdgeInsets.all(80),
-            child: provider.isDark()
-                ? Assets.icons.logoTextblack01.svg(
-                colorFilter: ColorFilter.mode(AppColors.green, BlendMode.srcIn))
-                : Assets.icons.logoTextdarkgreen01.svg(
-                colorFilter: ColorFilter.mode(
-                    AppColors.darkgreen, BlendMode.srcIn)),
-          ),
-
+          title: Text(locale!.forgetPassword, style: TextStyle(
+              color: provider.isDark() ? AppColors.green : AppColors
+                  .darkgreen),),
           centerTitle: true,
+
+
         ),
+
 
         body: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),

@@ -57,20 +57,30 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> checkOnBoarding() async {
     bool isseen = await SharePrefService.getSeen();
     final currentuser = FirebaseAuth.instance.currentUser;
-    if (isseen && currentuser != null) {
-      Future.delayed(const Duration(seconds: 4), () {
+    if (!isseen) {
+      Future.delayed(const Duration(seconds: 3), () {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          AppRouteName.letsStart,
+          (route) => false,
+        );
+      });
+    } else if (currentuser != null) {
+      Future.delayed(Duration(seconds: 3), () {
         Navigator.pushNamedAndRemoveUntil(
           context,
           AppRouteName.LayoutView,
           (route) => false,
         );
       });
-    } else {
-      Future.delayed(Duration(seconds: 4), () {
+
+    }
+    else {
+      Future.delayed(Duration(seconds: 3), () {
         Navigator.pushNamedAndRemoveUntil(
           context,
-          AppRouteName.letsStart,
-          (route) => false,
+          AppRouteName.LoginPage,
+              (route) => false,
         );
       });
     }

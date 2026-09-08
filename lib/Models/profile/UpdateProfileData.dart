@@ -124,7 +124,35 @@ class _UpdateProfileDataState extends State<UpdateProfileData> {
                     ],
                   ),
                 ),
-                SizedBox(height: 50),
+
+                SizedBox(height: 50,),
+
+                GestureDetector(
+                  onTap: () async {
+                    await FireStoreCloudServiceUser.setImage(user!, null);
+                    AppSnackBar.success("photo deleted");
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      AppRouteName.LayoutView,
+                          (route) => false,
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(16),
+
+                    ),
+                    child: Center(child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text("Delete Photo",
+                        style: theme.titleLarge?.copyWith(
+                            fontSize: 16, color: AppColors.white),),
+                    )),
+                  ),
+                ),
+                SizedBox(height: 25),
 
                 Bounceable(
                   onTap: () async {

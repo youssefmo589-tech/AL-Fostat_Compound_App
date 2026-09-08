@@ -101,7 +101,7 @@ class FireStoreCloudServiceUser {
     }
   }
 
-  static Future<void> setImage(UserModel user, String image) async
+  static Future<void> setImage(UserModel user, String ? image) async
   {
     final collectionref = getcollectionref();
     final docRef = collectionref.doc(user.userid);

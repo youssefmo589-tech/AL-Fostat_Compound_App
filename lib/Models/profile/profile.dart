@@ -339,7 +339,6 @@ class _ProfileState extends State<Profile> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   spacing: 8,
                   children: [
-
                     ProfileCard(title: "${locale!.nameLabel} :  ${ user?.name ??
                         "Name..."}",),
                     ProfileCard(

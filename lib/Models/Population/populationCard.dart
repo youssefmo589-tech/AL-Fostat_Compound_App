@@ -46,11 +46,17 @@ class PopulationCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      "${user.name}",
-                      style: theme.titleSmall?.copyWith(
-                        color: provider.isDark() ? AppColors.black : AppColors
-                            .lighgrey,
+                    SizedBox(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width * 0.6,
+                      child: Text(
+                        "${user.name}",
+                        style: theme.titleSmall?.copyWith(
+                          color: provider.isDark() ? AppColors.black : AppColors
+                              .lighgrey,
+                        ),
                       ),
                     ),
 
