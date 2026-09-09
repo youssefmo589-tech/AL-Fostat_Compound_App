@@ -20,31 +20,28 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
   PageController controller = PageController();
 
-  List<OnBoardingModel> pages = [
-    OnBoardingModel(
-      title: "Your Community, One App",
-      description:
-          "Stay connected with everything happening in your residential community. Follow updates, achievements, and important announcements.",
-      image: "assets/images/onboarding page1.png",
-    ),
-    OnBoardingModel(
-      title: "See What's Happening",
-      description:
-          "Keep up with the latest developments, improvements, and achievements in your community",
-      image: "assets/images/onboarding page2.png",
-    ),
-    OnBoardingModel(
-      title: "Your Voice Matters",
-      description:
-          "Submit your complaints and suggestions easily, and stay updated on their progress.",
-      image: "assets/images/onboardingpage3.png",
-    ),
-  ];
-
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context);
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
+
+    List<OnBoardingModel> pages = [
+      OnBoardingModel(
+        title: locale!.onboardingTitle1,
+        description: locale.onboardingSubTitle1,
+        image: "assets/images/onboarding page1.png",
+      ),
+      OnBoardingModel(
+        title: locale.onboardingTitle2,
+        description: locale.onboardingSubTitle2,
+        image: "assets/images/onboarding page2.png",
+      ),
+      OnBoardingModel(
+        title: locale.onboardingTitle3,
+        description: locale.onboardingSubTitle3,
+        image: "assets/images/onboardingpage3.png",
+      ),
+    ];
 
     return Scaffold(
       appBar: AppBar(
