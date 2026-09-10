@@ -79,8 +79,11 @@
   "verifyMyEmail": "تأكيد بريدي الإلكتروني",
   "editAccountData": "تعديل بيانات الحساب",
   "deleteAccount": "حذف الحساب",
-  "deletePhoto": "حذف الصوره"
-
+  "deletePhoto": "حذف الصوره",
+  "logoutConfirmation": "هل أنت تأكد من أنك تريد تسجيل الخروج؟",
+  "cancel": "إلغاء",
+  "deleteAccountConfirmation": "هل أنت تأكد من أنك تريد حذف حسابك؟",
+  "delete": "حذف"
 
 
 }

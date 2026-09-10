@@ -25,8 +25,7 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
 
     final provider = Provider.of<SettingProvider>(context);
     final theme = Theme.of(context).textTheme;
-    return SafeArea(
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             onPressed: () {
@@ -47,7 +46,8 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
         ),
 
 
-        body: Padding(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           child: SingleChildScrollView(
             child: Column(
@@ -97,9 +97,10 @@ class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
                 ),
               ],
             ),
+            ),
           ),
         ),
-      ),
     );
+
   }
 }

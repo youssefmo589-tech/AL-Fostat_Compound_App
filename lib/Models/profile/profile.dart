@@ -403,6 +403,44 @@ class _ProfileState extends State<Profile> {
                     ),
                     GestureDetector(
                       onTap: () async {
+                        final confirm = await showDialog(context: context,
+
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(locale.logout),
+                                content: Text(locale.logoutConfirmation),
+                                actions: [
+
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(false);
+                                    },
+                                    child: Text(locale.cancel, style: TextStyle(
+                                        color: provider.isDark() ? AppColors
+                                            .lighgrey : AppColors.black)),
+
+                                  ),
+
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(true);
+                                    },
+                                    child: Text(locale.logout,
+                                      style: TextStyle(color: Colors.red),),
+
+                                  )
+
+                                ],
+
+                              );
+                            }
+
+
+                        );
+
+                        if (confirm != true) return;
+
+
                         await FirebaseAuth.instance.signOut();
                         Navigator.pushNamedAndRemoveUntil(
                             context, AppRouteName.LoginPage, (route) => false);
@@ -454,6 +492,45 @@ class _ProfileState extends State<Profile> {
                     GestureDetector(
 
                       onTap: () async {
+                        final confirm = await showDialog<bool>(
+                            context: context,
+
+
+                            builder: (context) {
+                              return AlertDialog(
+                                title: Text(locale.deleteAccount),
+                                content: Text(locale.deleteAccountConfirmation),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(false);
+                                    },
+                                    child: Text(locale.cancel, style: TextStyle(
+                                        color: provider.isDark() ? AppColors
+                                            .lighgrey : AppColors.black),),
+
+                                  ),
+
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop(true);
+                                    },
+                                    child: Text(locale.delete,
+                                      style: TextStyle(color: Colors.red),),
+
+                                  )
+
+                                ],
+
+                              );
+                            }
+
+                        );
+
+
+                        if (confirm != true) return;
+
+
                         try {
                           EasyLoading.show();
 

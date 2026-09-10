@@ -252,4 +252,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get deletePhoto => 'حذف الصوره';
+
+  @override
+  String get logoutConfirmation => 'هل أنت تأكد من أنك تريد تسجيل الخروج؟';
+
+  @override
+  String get cancel => 'إلغاء';
+
+  @override
+  String get deleteAccountConfirmation => 'هل أنت تأكد من أنك تريد حذف حسابك؟';
+
+  @override
+  String get delete => 'حذف';
 }

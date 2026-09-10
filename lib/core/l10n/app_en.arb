@@ -79,7 +79,11 @@
   "verifyMyEmail": "Verify My Email",
   "editAccountData": "Edit Account Data",
   "deleteAccount": "Delete Account",
-  "deletePhoto": "Delete Photo"
+  "deletePhoto": "Delete Photo",
+  "logoutConfirmation": "Are you sure you want to log out?",
+  "cancel": "Cancel",
+  "deleteAccountConfirmation": "Are you sure you want to delete your account?",
+  "delete": "Delete"
 
 
 

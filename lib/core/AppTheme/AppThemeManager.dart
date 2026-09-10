@@ -5,6 +5,11 @@ import 'AppColors.dart';
 
 class AppThemeManager {
   static final ThemeData lightheme = ThemeData(
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.darkgreen,
+      selectionColor: AppColors.darkgreen,
+      selectionHandleColor: AppColors.darkgreen,
+    ),
     fontFamilyFallback: const ["Cairo", "Poppins"],
     fontFamily: "Poppins",
 
@@ -39,6 +44,11 @@ class AppThemeManager {
   );
 
   static final ThemeData darktheme = ThemeData(
+    textSelectionTheme: TextSelectionThemeData(
+      cursorColor: AppColors.green,
+      selectionColor: AppColors.green,
+      selectionHandleColor: AppColors.green,
+    ),
     fontFamily: "Poppins",
 
     fontFamilyFallback: const ["Cairo", "Poppins"],

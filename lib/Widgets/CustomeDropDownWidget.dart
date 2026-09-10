@@ -31,7 +31,7 @@ class CustomeDropdownWidget extends StatelessWidget {
           fontWeight: FontWeight.w400,
         ),
         headerStyle: TextStyle(
-          color: provider.isDark() ? AppColors.lighgrey : AppColors.lighgreyev,
+          color: provider.isDark() ? AppColors.lighgrey : AppColors.black,
           fontSize: 14,
           fontWeight: FontWeight.w400,
         ),
