@@ -17,6 +17,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => SettingProvider(),
+      child: MyApp(),
+    ),
+  );
+
+  configLoading();
 
   final messaging = FirebaseMessaging.instance;
   await messaging.requestPermission(
@@ -27,15 +35,6 @@ Future<void> main() async {
   );
   await messaging.subscribeToTopic("all_users");
 
-
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => SettingProvider(),
-      child: MyApp(),
-    ),
-  );
-
-  configLoading();
 }
 
 class MyApp extends StatelessWidget {
